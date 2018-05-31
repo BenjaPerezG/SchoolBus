@@ -17,15 +17,15 @@ public interface AppDao {
     User getUserById(int user_id);
 
 //////Guardian queries//////////////////////////////////////////////////////////////////////////////
-    @Query("SELECT * FROM guardian WHERE guardian.id = :guardian_id")
+    @Query("SELECT * FROM guardian WHERE guardian.user_id = :guardian_id")
     Guardian getGuardianById(int guardian_id);
 
 //////Driver queries////////////////////////////////////////////////////////////////////////////////
-    @Query("SELECT * FROM driver WHERE driver.id = :driver_id")
+    @Query("SELECT * FROM driver WHERE driver.user_id = :driver_id")
     Driver getDriverById(int driver_id);
 
 //////Bus queries///////////////////////////////////////////////////////////////////////////////////
-    @Query("SELECT * FROM bus WHERE bur.id = :bus_id")
+    @Query("SELECT * FROM bus WHERE bus.id = :bus_id")
     Bus getBusById(int bus_id);
 
 //////Trip queries//////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ public interface AppDao {
     Stop getStopById(int stop_id);
 
 //////Mixed queries/////////////////////////////////////////////////////////////////////////////////
-    @Query("SELECT s FROM s student, t trip, tr tripstudent " +
-            "WHERE s.id = tr.student_id and tr.trip_id = :trip_id")
-    LiveData<List<Student>> getStudentsByTrip(int trip_id);
+    @Query("SELECT student.id FROM student, tripstudent " +
+            "WHERE student.id = tripstudent.student_id and tripstudent.trip_id = :trip_id")
+    LiveData<List<Integer>> getStudentsIdByTrip(int trip_id);
 }

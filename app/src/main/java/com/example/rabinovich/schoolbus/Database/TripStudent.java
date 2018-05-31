@@ -18,9 +18,9 @@ public class TripStudent {
 
     //Foreign keys
     @ColumnInfo(name = "trip_id")
-    private int trip_id;
+    private int tripId;
     @ColumnInfo(name = "student_id")
-    private int student_id;
+    private int studentId;
 
     //Gets & sets
     public int getId() {
@@ -31,16 +31,16 @@ public class TripStudent {
     }
 
     public int getTripId() {
-        return trip_id;
+        return tripId;
     }
     public void setTripId(int trip_id) {
-        this.trip_id = trip_id;
+        this.tripId = trip_id;
     }
 
     public int getStudentId() {
-        return student_id;
+        return studentId;
     }
     public void setStudentId(int student_id) {
-        this.student_id = student_id;
+        this.studentId = student_id;
     }
 }

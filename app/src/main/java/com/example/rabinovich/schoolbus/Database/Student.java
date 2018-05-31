@@ -20,13 +20,13 @@ public class Student {
     @ColumnInfo(name = "guardian")
     private int guardian;
     @ColumnInfo(name = "stop_id")
-    private String stop_id;
+    private String stopId;
 
     //Attributes
     @ColumnInfo(name = "first_name")
-    private String first_name;
+    private String firstName;
     @ColumnInfo(name = "last_name")
-    private String last_name;
+    private String lastName;
     @ColumnInfo(name = "age")
     private int age;
     @ColumnInfo(name = "classroom")
@@ -57,10 +57,10 @@ public class Student {
     }
 
     public String getStopId() {
-        return stop_id;
+        return stopId;
     }
     public void setStopId(String stop_id) {
-        this.stop_id = stop_id;
+        this.stopId = stop_id;
     }
 
     public String getClassroom() {
@@ -71,17 +71,17 @@ public class Student {
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
     public void setFirstName(String first_name) {
-        this.first_name = first_name;
+        this.firstName = first_name;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
     public void setLastName(String last_name) {
-        this.last_name = last_name;
+        this.lastName = last_name;
     }
 
     public String getRut() {

@@ -24,7 +24,7 @@ public class User {
     @ColumnInfo(name = "email")
     private String email;
     @ColumnInfo(name = "is_admin")
-    private boolean is_admin;
+    private boolean isAdmin;
 
     //Gets & sets
     public int getId() {
@@ -63,9 +63,9 @@ public class User {
     }
 
     public boolean getIsAdmin() {
-        return is_admin;
+        return isAdmin;
     }
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

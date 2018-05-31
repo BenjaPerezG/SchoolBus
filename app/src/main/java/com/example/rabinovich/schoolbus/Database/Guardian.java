@@ -13,36 +13,36 @@ import android.arch.persistence.room.PrimaryKey;
 class Guardian {
     @PrimaryKey
     @ColumnInfo(name = "user_id")
-    private int user_id;
+    private int userId;
 
     //Attributes
     @ColumnInfo(name = "primary_number")
-    private String primary_number;
+    private String primaryNumber;
     @ColumnInfo(name = "secondary_number")
-    private String secondary_number;
+    private String secondaryNumber;
     @ColumnInfo(name = "notify")
     private boolean notify;
 
     //Gets & sets
     public int getUserId() {
-        return user_id;
+        return userId;
     }
     public void setUserId(int user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public String getPrimaryNumber() {
-        return primary_number;
+        return primaryNumber;
     }
     public void setPrimaryNumber(String primary_number) {
-        this.primary_number = primary_number;
+        this.primaryNumber = primary_number;
     }
 
     public String getSecondaryNumber() {
-        return secondary_number;
+        return secondaryNumber;
     }
     public void setSecondaryNumber(String secondary_number) {
-        this.secondary_number = secondary_number;
+        this.secondaryNumber = secondary_number;
     }
 
     public boolean getNotify() {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SchoolBus</string>
+    <string name="nav_trip">Viajes</string>
 </resources>

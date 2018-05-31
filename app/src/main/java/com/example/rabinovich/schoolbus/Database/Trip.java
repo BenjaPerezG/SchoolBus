@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by Rabinovich on 5/23/2018.
  */
 
-@Entity(foreignKeys = {@ForeignKey(entity = Driver.class, parentColumns = "id", childColumns = "driver_id"),
+@Entity(foreignKeys = {@ForeignKey(entity = Driver.class, parentColumns = "user_id", childColumns = "driver_id"),
                        @ForeignKey(entity = Bus.class, parentColumns = "id", childColumns = "bus_id")})
 class Trip {
     @PrimaryKey(autoGenerate = true)
@@ -20,13 +20,13 @@ class Trip {
 
     //Foreign keys
     @ColumnInfo(name = "bus_id")
-    private int bus_id;
+    private int busId;
     @ColumnInfo(name = "driver_id")
-    private int driver_id;
+    private int driverId;
 
     //Attributes
     @ColumnInfo(name = "date")
-    private Date date;
+    private String date;
 
     //Gets & sets
     public int getId() {
@@ -37,23 +37,23 @@ class Trip {
     }
 
     public int getBusId() {
-        return bus_id;
+        return busId;
     }
     public void setBusId(int bus_id) {
-        this.bus_id = bus_id;
+        this.busId = bus_id;
     }
 
     public int getDriverId() {
-        return driver_id;
+        return driverId;
     }
     public void setDriverId(int driver_id) {
-        this.driver_id = driver_id;
+        this.driverId = driver_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

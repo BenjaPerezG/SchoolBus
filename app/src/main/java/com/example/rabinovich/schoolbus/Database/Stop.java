@@ -22,7 +22,7 @@ class Stop {
     @ColumnInfo(name = "numeration")
     private int numeration;
     @ColumnInfo(name = "house_apartment")
-    private String house_apartment;
+    private String houseApartment;
 
     //Gets & sets
     public int getId() {
@@ -54,9 +54,9 @@ class Stop {
     }
 
     public String getHouseApartment() {
-        return house_apartment;
+        return houseApartment;
     }
     public void setHouseApartment(String house_apartment) {
-        this.house_apartment = house_apartment;
+        this.houseApartment = house_apartment;
     }
 }

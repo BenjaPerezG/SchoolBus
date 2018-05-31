@@ -17,7 +17,7 @@ class Bus {
 
     //Foreign Keys
     @ColumnInfo(name = "driver_id")
-    private int driver_id;
+    private int driverId;
 
     //Gets& sets
     public int getId() {
@@ -28,9 +28,9 @@ class Bus {
     }
 
     public int getDriverId() {
-        return driver_id;
+        return driverId;
     }
     public void setDriverId(int driver_id) {
-        this.driver_id = driver_id;
+        this.driverId = driver_id;
     }
 }
