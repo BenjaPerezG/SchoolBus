@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SchoolBus.iml" filepath="$PROJECT_DIR$/SchoolBus.iml" />
-      <module fileurl="file://D:\Rabinovich\U\AppsMoviles 201810\Project\SchoolBus\SchoolBus.iml" filepath="D:\Rabinovich\U\AppsMoviles 201810\Project\SchoolBus\SchoolBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Rabinovich\U\AppsMoviles 201810\Project\SchoolBus\app\app.iml" filepath="D:\Rabinovich\U\AppsMoviles 201810\Project\SchoolBus\app\app.iml" />
     </modules>
   </component>
 </project>
