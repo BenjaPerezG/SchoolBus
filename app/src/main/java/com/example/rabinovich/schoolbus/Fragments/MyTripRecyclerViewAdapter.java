@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Fragments.ItemFragment.OnListFragmentInteractionListener;
 import com.example.rabinovich.schoolbus.Fragments.dummy.DummyContent.DummyItem;
+import com.example.rabinovich.schoolbus.R;
 
 import java.util.List;
 
