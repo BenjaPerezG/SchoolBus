@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "user_id"))
-class Guardian {
+public class Guardian {
     @PrimaryKey
     @ColumnInfo(name = "user_id")
     private int userId;

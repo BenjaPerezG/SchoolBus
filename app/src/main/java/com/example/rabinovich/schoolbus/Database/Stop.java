@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity
-class Stop {
+public class Stop {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;

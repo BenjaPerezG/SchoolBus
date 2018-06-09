@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity(foreignKeys = @ForeignKey(entity = Driver.class, parentColumns = "user_id", childColumns = "driver_id"))
-class Bus {
+public class Bus {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
