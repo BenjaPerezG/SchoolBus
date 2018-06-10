@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -28,9 +29,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.Fragments.AdminRegistrationFragment;
 import com.example.rabinovich.schoolbus.R;
 
 import java.util.ArrayList;
@@ -95,6 +98,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button mRegisterButton = (Button) findViewById(R.id.register_fragment_button);
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerNewAdmin();
             }
         });
 
@@ -196,6 +207,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
+    }
+
+    private void registerNewAdmin() {
+        // Create new fragment and transaction
+        AdminRegistrationFragment adminRegistrationFragment = new AdminRegistrationFragment(userViewModel);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack
+        transaction.replace(R.id.login_main_layout, adminRegistrationFragment);
+        transaction.addToBackStack(null);
+        //LinearLayout loginLinearLayout = (LinearLayout) findViewById(R.id.login_lineal_layout);
+        //loginLinearLayout.setVisibility(View.GONE);
+// Commit the transaction
+        transaction.commit();
     }
 
     private boolean isEmailValid(String email) {
