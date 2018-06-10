@@ -17,4 +17,7 @@ public interface TripStudentDao {
 
     @Query("SELECT ts.student_id FROM tripstudent ts WHERE ts.trip_id = :trip_id")
     LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id);
+
+    @Query("SELECT ts.trip_id FROM tripstudent ts WHERE ts.student_id = :student_id")
+    LiveData<List<Integer>> getTripsIdsByStudentId(int student_id);
 }

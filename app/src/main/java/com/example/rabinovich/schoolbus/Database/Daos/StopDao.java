@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import com.example.rabinovich.schoolbus.Database.Stop;
 
+import java.util.List;
+
 @Dao
 public interface StopDao {
     @Insert
@@ -14,4 +16,10 @@ public interface StopDao {
 
     @Query("SELECT * FROM stop WHERE stop.id = :stop_id")
     LiveData<Stop> getStopById(int stop_id);
+
+    @Query("SELECT * FROM stop s WHERE s.comuna = :comuna")
+    LiveData<List<Stop>> getStopsByComuna(String comuna);
+
+    @Query("SELECT * FROM stop s WHERE s.comuna = :comuna and s.street = :street and s.numeration = :numeration")
+    LiveData<List<Stop>> getStopsByFullAddress(String comuna, String street, int numeration);
 }

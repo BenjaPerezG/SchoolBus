@@ -11,11 +11,6 @@ import java.util.List;
 public class TripRepository {
 
     private TripDao mTripDao;
-    private LiveData<List<Trip>> mAllTrips;
-    private LiveData<Trip> mTrip;
-    private LiveData<List<Trip>> mTripsByDriverId;
-    private LiveData<List<Trip>> mTripsByBusId;
-    private LiveData<List<Trip>> mTripsByDate;
 
     TripRepository(Application application){
         AppDatabase database = AppDatabase.getDatabase(application);
@@ -26,7 +21,7 @@ public class TripRepository {
     LiveData<List<Trip>> getAllTrips(){ return mTripDao.getAllTrips(); }
     LiveData<List<Trip>> getTripsByDriverId(int driver_id){ return mTripDao.getTripsByDriverId(driver_id); }
     LiveData<List<Trip>> getTripsByBusId(int bus_id){ return  mTripDao.getTripsByBusId(bus_id); }
-    LiveData<List<Trip>> getmTripsByDate(String date){ return mTripDao.getTripsByDate(date); }
+    LiveData<List<Trip>> getTripsByDate(String date){ return mTripDao.getTripsByDate(date); }
 
     public void insert (Trip trip){ new insertAsyncTask(mTripDao).execute(trip); }
 

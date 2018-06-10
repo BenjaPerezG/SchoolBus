@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
  * Created by Rabinovich on 5/23/2018.
  */
 
-@Entity(foreignKeys = {@ForeignKey(entity = Guardian.class, parentColumns = "user_id", childColumns = "guardian"),
+@Entity(foreignKeys = {@ForeignKey(entity = Guardian.class, parentColumns = "user_id", childColumns = "guardian_id"),
                        @ForeignKey(entity = Stop.class, parentColumns = "id", childColumns = "stop_id")})
 public class Student {
     @PrimaryKey(autoGenerate = true)
@@ -17,8 +17,8 @@ public class Student {
     private int id;
 
     //Foreign keys
-    @ColumnInfo(name = "guardian")
-    private int guardian;
+    @ColumnInfo(name = "guardian_id")
+    private int guardian_id;
     @ColumnInfo(name = "stop_id")
     private String stopId;
 
@@ -49,11 +49,11 @@ public class Student {
         this.age = age;
     }
 
-    public int getGuardian() {
-        return guardian;
+    public int getGuardian_id() {
+        return guardian_id;
     }
-    public void setGuardian(int guardian) {
-        this.guardian = guardian;
+    public void setGuardian_id(int guardian_id) {
+        this.guardian_id = guardian_id;
     }
 
     public String getStopId() {
