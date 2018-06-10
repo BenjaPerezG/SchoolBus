@@ -28,4 +28,8 @@
     <string name="number">Number</string>
     <string name="telefono_2">Telefono 2</string>
     <string name="telefono_1">Telefono 1</string>
+    <string name="rut">Rut</string>
+    <string name="edad">Edad</string>
+    <string name="classroom">Classroom</string>
+    <string name="crear">Crear</string>
 </resources>
