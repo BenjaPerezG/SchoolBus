@@ -33,7 +33,7 @@ public class UserViewModel extends AndroidViewModel {
         return mRepository.getUserById(id);
     }
 
-    LiveData<User> getUserByCredentials(String email, String password) {
+    public LiveData<User> getUserByCredentials(String email, String password) {
         return mRepository.getUserByCredentials(email, password);
     }
 
