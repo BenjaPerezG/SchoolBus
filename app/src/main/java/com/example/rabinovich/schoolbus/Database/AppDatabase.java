@@ -18,7 +18,7 @@ import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 /**
  * Created by Rabinovich on 5/23/2018.
  */
-@Database(entities = {User.class, Guardian.class, Driver.class, Bus.class, Trip.class, TripStop.class, Stop.class, Student.class, TripStudent.class, StudentStop.class}, version = 1)
+@Database(entities = {User.class, Guardian.class, Driver.class, Bus.class, Trip.class, TripStop.class, Stop.class, Student.class, TripStudent.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
    //Entities Daos
    public abstract BusDao busDao();

@@ -11,10 +11,13 @@ import java.util.List;
 
 //To use: instance the view model like this: UserViewModel user = ViewModelProviders.of(this).get(UserViewModel.class);
 //then call the wanted function (for example getUserById(int id)) and override the method onChanged:
-//@Override
-//public void onChanged(@Nullable final User user){
-//  #code to update the cached copy of user in the adapter
-//  adapter.setUser(user);}
+
+//getUserById(id).observe(this, new Observer<User>(){
+//  @Override
+//  public void onChanged(@Nullable final User user){
+//      #code to update the cached copy of user in the adapter
+//      adapter.setUser(user);}
+//}
 
 public class UserViewModel extends AndroidViewModel {
 
@@ -25,7 +28,8 @@ public class UserViewModel extends AndroidViewModel {
         mRepository = new UserRepository(application);
     }
 
-    LiveData<List<User>> getAllAdminUsers(){return mRepository.getAllAdminUsers();}
+    public LiveData<List<User>> getAllUsers(){return mRepository.getAllUsers();}
+    public LiveData<List<User>> getAllAdminUsers(){return mRepository.getAllAdminUsers();}
     public LiveData<User> getUserById(int id){
         return mRepository.getUserById(id);
     }

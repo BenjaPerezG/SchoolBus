@@ -26,7 +26,7 @@ public class StudentRepository {
 
     public void insert(Student student){mStudentDao.insert(student);}
 
-    private static class insertAsyncTask extends AsyncTask<Student, Void, Void> {
+    private static class insertAsyncTask extends AsyncTask<com.example.rabinovich.schoolbus.Database.Student, Void, Void> {
 
         private StudentDao mAsyncTaskDao;
 
