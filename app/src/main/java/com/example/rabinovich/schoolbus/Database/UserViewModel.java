@@ -8,7 +8,7 @@ import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserRepository;
 
 //To use: instance the view model like this: ViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-//then call the wanted function (for example getUser(int id)) and override the method onChanged:
+//then call the wanted function (for example getUserById(int id)) and override the method onChanged:
 //@Override
 //public void onChanged(@Nullable final User user){
 //  #code to update the cached copy of user in the adapter

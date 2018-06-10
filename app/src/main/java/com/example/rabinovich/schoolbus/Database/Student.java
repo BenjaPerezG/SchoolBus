@@ -17,8 +17,8 @@ public class Student {
     private int id;
 
     //Foreign keys
-    @ColumnInfo(name = "guardian")
-    private int guardian;
+    @ColumnInfo(name = "guardian_id")
+    private int guardian_id;
     @ColumnInfo(name = "stop_id")
     private String stopId;
 
@@ -50,10 +50,10 @@ public class Student {
     }
 
     public int getGuardian() {
-        return guardian;
+        return guardian_id;
     }
-    public void setGuardian(int guardian) {
-        this.guardian = guardian;
+    public void setGuardian(int guardian_id) {
+        this.guardian_id = guardian_id;
     }
 
     public String getStopId() {

@@ -16,4 +16,7 @@ public interface TripStopDao {
 
     @Query("SELECT ts.stop_id FROM tripstop ts WHERE ts.trip_id = :trip_id")
     LiveData<List<Integer>> getStopsIdsByTripId(int trip_id);
+
+    @Query("SELECT ts.trip_id FROM tripstop ts WHERE ts.stop_id = :stop_id")
+    LiveData<List<Integer>> getTripsIdsByStopId(int stop_id);
 }
