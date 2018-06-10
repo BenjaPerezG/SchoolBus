@@ -28,7 +28,8 @@ public class UserViewModel extends AndroidViewModel {
         mRepository = new UserRepository(application);
     }
 
-    LiveData<List<User>> getAllAdminUsers(){return mRepository.getAllAdminUsers();}
+    public LiveData<List<User>> getAllUsers(){return mRepository.getAllUsers();}
+    public LiveData<List<User>> getAllAdminUsers(){return mRepository.getAllAdminUsers();}
     public LiveData<User> getUserById(int id){
         return mRepository.getUserById(id);
     }

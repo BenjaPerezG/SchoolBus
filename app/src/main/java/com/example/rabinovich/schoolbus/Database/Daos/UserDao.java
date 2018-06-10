@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+
 import com.example.rabinovich.schoolbus.Database.User;
 
 import java.util.List;
@@ -14,6 +15,9 @@ import java.util.List;
 public interface UserDao {
     @Insert
     void insert(User user);
+
+    @Query("SELECT * FROM user")
+    LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM user WHERE user.id = :user_id")
     LiveData<User> getUserById(int user_id);
