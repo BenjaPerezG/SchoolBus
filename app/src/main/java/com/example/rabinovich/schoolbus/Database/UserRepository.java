@@ -22,6 +22,7 @@ public class UserRepository {
         mUserDao = database.userDao();
     }
 
+    LiveData<List<User>> getAllUsers(){return mUserDao.getAllUsers();}
     LiveData<List<User>> getAllAdminUsers(){return mUserDao.getAllAdminUsers();}
     LiveData<User> getUserById(int id){
         return mUserDao.getUserById(id);
