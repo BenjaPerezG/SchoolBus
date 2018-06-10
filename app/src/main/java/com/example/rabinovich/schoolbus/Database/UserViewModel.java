@@ -7,6 +7,8 @@ import android.arch.lifecycle.LiveData;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserRepository;
 
+import java.util.List;
+
 //To use: instance the view model like this: UserViewModel user = ViewModelProviders.of(this).get(UserViewModel.class);
 //then call the wanted function (for example getUserById(int id)) and override the method onChanged:
 //@Override
@@ -23,6 +25,7 @@ public class UserViewModel extends AndroidViewModel {
         mRepository = new UserRepository(application);
     }
 
+    LiveData<List<User>> getAllAdminUsers(){return mRepository.getAllAdminUsers();}
     public LiveData<User> getUserById(int id){
         return mRepository.getUserById(id);
     }
