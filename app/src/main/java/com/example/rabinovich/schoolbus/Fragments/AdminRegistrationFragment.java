@@ -79,13 +79,6 @@ public class AdminRegistrationFragment extends Fragment {
         user.setPassword(passwordEditText.getText().toString());
         user.setIsAdmin(true);
         userViewModel.insert(user);
-        final User user1 = new User();
-        userViewModel.getUserByCredentials(emailEditText.getText().toString(),passwordEditText.getText().toString()).observe(getActivity(), new Observer<User>() {
-            @Override
-            public void onChanged(@Nullable User user) {
-                user1.setFirst_name(user.getFirst_name());
-                Log.d("usertry", user1.getFirst_name());
-            }
-        });
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 }
