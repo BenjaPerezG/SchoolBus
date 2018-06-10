@@ -26,6 +26,7 @@ public abstract class AppDatabase extends RoomDatabase {
    public abstract GuardianDao guardianDao();
    public abstract StopDao stopDao();
    public abstract StudentDao studentDao();
+   public abstract StudentStopDao studentStopDao();
    public abstract TripDao tripDao();
    public abstract TripStopDao tripStopDao();
    public abstract TripStudentDao tripStudentDao();

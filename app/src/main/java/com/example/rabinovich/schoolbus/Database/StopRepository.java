@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 
 import com.example.rabinovich.schoolbus.Database.Daos.StopDao;
 
+import java.util.List;
+
 public class StopRepository {
 
     private StopDao mStopDao;
@@ -15,8 +17,9 @@ public class StopRepository {
         mStopDao = database.stopDao();
     }
 
-    LiveData<Stop> getStop(int id) { return mStopDao.getStopById(id); }
-
+    LiveData<Stop> getStopById(int id) { return mStopDao.getStopById(id); }
+    LiveData<List<Stop>> getStopsByComuna(String comuna){return mStopDao.getStopsByComuna(comuna);}
+    LiveData<List<Stop>> getStopsByFullAddress(String comuna, String street, int numeration){return mStopDao.getStopsByFullAddress(comuna, street, numeration);}
     public void insert (Stop stop){ new insertAsyncTask(mStopDao).execute(stop); }
 
     private static class insertAsyncTask extends AsyncTask<Stop, Void, Void> {
