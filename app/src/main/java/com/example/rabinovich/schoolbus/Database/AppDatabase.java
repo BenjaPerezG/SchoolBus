@@ -5,6 +5,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.rabinovich.schoolbus.Database.Daos.BusDao;
+import com.example.rabinovich.schoolbus.Database.Daos.DriverDao;
+import com.example.rabinovich.schoolbus.Database.Daos.GuardianDao;
+import com.example.rabinovich.schoolbus.Database.Daos.StopDao;
+import com.example.rabinovich.schoolbus.Database.Daos.StudentDao;
+import com.example.rabinovich.schoolbus.Database.Daos.TripDao;
+import com.example.rabinovich.schoolbus.Database.Daos.TripStopDao;
+import com.example.rabinovich.schoolbus.Database.Daos.TripStudentDao;
 import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 
 /**
@@ -13,6 +21,14 @@ import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 @Database(entities = {User.class, Guardian.class, Driver.class, Bus.class, Trip.class, TripStop.class, Stop.class, Student.class, TripStudent.class, StudentStop.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
    //Entities Daos
+   public abstract BusDao busDao();
+   public abstract DriverDao driverDao();
+   public abstract GuardianDao guardianDao();
+   public abstract StopDao stopDao();
+   public abstract StudentDao studentDao();
+   public abstract TripDao tripDao();
+   public abstract TripStopDao tripStopDao();
+   public abstract TripStudentDao tripStudentDao();
    public abstract UserDao userDao();
 
    private static AppDatabase INSTANCE;

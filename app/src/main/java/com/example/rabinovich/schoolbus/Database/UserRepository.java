@@ -20,8 +20,12 @@ public class UserRepository {
         mUserDao = database.userDao();
     }
 
-    LiveData<User> getUser(int id){
+    LiveData<User> getUserById(int id){
         return mUserDao.getUserById(id);
+    }
+
+    LiveData<User> getUserByCredentials(String email, String password) {
+        return mUserDao.getUserByCredentials(email, password);
     }
 
     public void insert (User user){

@@ -3,6 +3,7 @@ package com.example.rabinovich.schoolbus.Database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Rabinovich on 5/23/2018.
@@ -15,14 +16,19 @@ public class User {
     private int id;
 
     //Attributes
+    @NonNull
     @ColumnInfo(name = "first_name")
     private String first_name;
+    @NonNull
     @ColumnInfo(name = "last_name")
     private String last_name;
+    @NonNull
     @ColumnInfo(name = "password")
     private String password;
+    @NonNull
     @ColumnInfo(name = "email")
     private String email;
+    @NonNull
     @ColumnInfo(name = "is_admin")
     private boolean isAdmin;
 

@@ -1,11 +1,13 @@
 package com.example.rabinovich.schoolbus.Database.Daos;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import com.example.rabinovich.schoolbus.Database.Student;
 
+@Dao
 public interface StudentDao {
     @Insert
     void insert(Student student);

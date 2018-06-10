@@ -27,6 +27,7 @@ public class Trip {
     //Attributes
     @ColumnInfo(name = "date")
     private String date;
+    //Date format: "MM-DD-YYYY"
 
     //Gets & sets
     public int getId() {

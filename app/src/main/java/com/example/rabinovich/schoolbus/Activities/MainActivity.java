@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         int id = menuItem.getItemId();
-                        // close drawer when item is tapped
+                        // close drawer when item is tapped 
                         if(id==R.id.nav_trips){
                             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                             ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
