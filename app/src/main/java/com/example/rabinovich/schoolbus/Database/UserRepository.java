@@ -25,14 +25,14 @@ public class UserRepository {
     }
 
     public void insert (User user){
-        new insertAsynTask(mUserDao).execute(user);
+        new insertAsyncTask(mUserDao).execute(user);
     }
 
-    private static class insertAsynTask extends AsyncTask<User, Void, Void>{
+    private static class insertAsyncTask extends AsyncTask<User, Void, Void>{
 
         private UserDao mAsyncTaskDao;
 
-        insertAsynTask(UserDao dao){
+        insertAsyncTask(UserDao dao){
             mAsyncTaskDao = dao;
         }
 

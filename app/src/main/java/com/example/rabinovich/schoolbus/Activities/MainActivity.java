@@ -1,5 +1,7 @@
 package com.example.rabinovich.schoolbus.Activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
@@ -19,22 +22,37 @@ import com.example.rabinovich.schoolbus.R;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-
+    SharedPreferences loginPreferences;
+    public static final String LOGIN_PREFERENCES = "LoginPrefs";
+    String email;
+    String password;
+    String firstName;
+    String lastName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
-
-
-
         SetupNavigationView();
         SetupToolbar();
         SetupNavigationHomeButton();
         SetupDrawerListener();
+        loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
+        email = loginPreferences.getString("userEmail", null);
+        password = loginPreferences.getString("userPassword", null);
+        if(email == null && password == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, 48);
+        }
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 
     private void SetupDrawerListener() {
         mDrawerLayout.addDrawerListener(
@@ -113,6 +131,23 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(resultCode == RESULT_OK){
+            SharedPreferences.Editor prefEditor = loginPreferences.edit();
+            prefEditor.putString("userEmail", data.getExtras().getString("email"));
+            prefEditor.putString("userPwd", data.getExtras().getString("password"));
+            prefEditor.commit();
+            Context context = getApplicationContext();
+            CharSequence text = "Login Successful";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
 
