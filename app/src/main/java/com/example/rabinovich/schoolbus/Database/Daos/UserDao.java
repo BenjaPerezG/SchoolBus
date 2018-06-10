@@ -8,7 +8,6 @@ import android.arch.persistence.room.Update;
 
 import com.example.rabinovich.schoolbus.Database.User;
 @Dao
-@Dao
 public interface UserDao {
     @Insert
     void insert(User user);

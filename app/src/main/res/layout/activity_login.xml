@@ -1,5 +1,11 @@
+<FrameLayout
+    android:id="@+id/login_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_lineal_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -11,6 +17,9 @@
     tools:context="com.example.rabinovich.schoolbus.Activities.LoginActivity">
 
     <!-- Login progress -->
+
+
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -38,7 +47,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -53,9 +62,9 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:hint="@string/password"
                     android:imeActionId="6"
-                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeActionLabel="@string/action_sign_in"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -67,7 +76,7 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/user_type_array"/>
+                android:entries="@array/user_type_array" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -78,11 +87,12 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
             //////////////////////Segunda Entrega//////////////////////
+
             <Button
-                android:id="@+id/register_button"
+                android:id="@+id/register_fragment_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register" />
+                android:text="@string/register" />
             ///////////////////////////////////////////////////////////
 
         </LinearLayout>
@@ -90,3 +100,5 @@
 
     </ScrollView>
 </LinearLayout>
+</FrameLayout>
+
