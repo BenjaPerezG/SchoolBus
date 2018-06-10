@@ -7,6 +7,9 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.example.rabinovich.schoolbus.Database.User;
+
+import java.util.List;
+
 @Dao
 public interface UserDao {
     @Insert
@@ -14,6 +17,9 @@ public interface UserDao {
 
     @Query("SELECT * FROM user WHERE user.id = :user_id")
     LiveData<User> getUserById(int user_id);
+
+    @Query("SELECT * FROM user u WHERE u.is_admin")
+    LiveData<List<User>> getAllAdminUsers();
 
     @Update
     public void update(User user);

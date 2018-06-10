@@ -1,10 +1,13 @@
 package com.example.rabinovich.schoolbus.Database;
 
 import android.app.Application;
+import android.app.ListActivity;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
+
+import java.util.List;
 
 /**
  * Created by Rabinovich on 5/30/2018.
@@ -13,17 +16,16 @@ import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 public class UserRepository {
 
     private UserDao mUserDao;
-    private LiveData<User> mUser;
 
     UserRepository(Application application){
         AppDatabase database = AppDatabase.getDatabase(application);
         mUserDao = database.userDao();
     }
 
+    LiveData<List<User>> getAllAdminUsers(){return mUserDao.getAllAdminUsers();}
     LiveData<User> getUserById(int id){
         return mUserDao.getUserById(id);
     }
-
     LiveData<User> getUserByCredentials(String email, String password) {
         return mUserDao.getUserByCredentials(email, password);
     }
