@@ -3,7 +3,6 @@ package com.example.rabinovich.schoolbus.Activities;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -18,7 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
-import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
+import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        AdminMainFragment adminMainFragment = new AdminMainFragment(userViewModel);
+        AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, adminMainFragment);
