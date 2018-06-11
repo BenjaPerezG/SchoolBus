@@ -25,5 +25,8 @@
             android:id="@+id/nav_stops"
             android:icon="@drawable/ic_stop_icon"
             android:title="Paradas"/>
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="Log out"/>
     </group>
 </menu>

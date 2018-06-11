@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
     UserViewModel userViewModel;
     StopViewModel stopViewModel;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
         }
 
@@ -166,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if(id==R.id.nav_users){
 
+                        }
+                        if(id==R.id.nav_log_out){
+                            SharedPreferences.Editor loginEditor = loginPreferences.edit();
+                            loginEditor.clear().commit();
+                            startActivityForResult(intent, 48);
                         }
 
                         mDrawerLayout.closeDrawers();
