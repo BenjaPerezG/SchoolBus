@@ -16,8 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.rabinovich.schoolbus.Database.DriverViewModel;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
+import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     int id;
     boolean isAdmin;
     UserViewModel userViewModel;
+    DriverViewModel driverViewModel;
     StopViewModel stopViewModel;
     Intent intent;
 
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        driverViewModel = ViewModelProviders.of(this).get(DriverViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
             intent = new Intent(this, LoginActivity.class);
@@ -149,7 +154,13 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_drivers){
+                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel, driverViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+                            transaction.replace(R.id.container, adminDriverFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                         }
                         if(id==R.id.nav_buses){
 
