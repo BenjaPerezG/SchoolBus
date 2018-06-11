@@ -14,6 +14,9 @@ public interface TripStopDao {
     @Insert
     void insert(TripStop tripStop);
 
+    @Query("SELECT * FROM tripstop")
+    LiveData<List<TripStop>> getAllTripStop();
+
     @Query("SELECT ts.stop_id FROM tripstop ts WHERE ts.trip_id = :trip_id")
     LiveData<List<Integer>> getStopsIdsByTripId(int trip_id);
 

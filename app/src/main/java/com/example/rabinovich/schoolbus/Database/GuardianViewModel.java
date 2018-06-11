@@ -14,7 +14,7 @@ public class GuardianViewModel extends AndroidViewModel {
         super(application);
         mRepository = new GuardianRepository(application);
     }
-
+    public LiveData<List<Guardian>> getAllGuardians(){return mRepository.getAllGuardians();}
     public LiveData<List<Guardian>> getGuardiansByNotify(boolean notify){return mRepository.getGuardiansByNotify(notify);}
     public LiveData<Guardian> getGuardianByUserId(int user_id){return mRepository.getGuardianByUserId(user_id);}
     public void insert(Guardian guardian){mRepository.insert(guardian);}

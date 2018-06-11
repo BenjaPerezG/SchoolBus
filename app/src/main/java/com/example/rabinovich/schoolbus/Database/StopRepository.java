@@ -16,7 +16,7 @@ public class StopRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mStopDao = database.stopDao();
     }
-
+    LiveData<List<Stop>> getAllStop(){return mStopDao.getAllStop();}
     LiveData<Stop> getStopById(int id) { return mStopDao.getStopById(id); }
     LiveData<List<Stop>> getStopsByComuna(String comuna){return mStopDao.getStopsByComuna(comuna);}
     LiveData<List<Stop>> getStopsByFullAddress(String comuna, String street, int numeration){return mStopDao.getStopsByFullAddress(comuna, street, numeration);}

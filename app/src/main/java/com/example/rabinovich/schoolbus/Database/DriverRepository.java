@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 
 import com.example.rabinovich.schoolbus.Database.Daos.DriverDao;
 
+import java.util.List;
+
 public class DriverRepository {
 
     private DriverDao mDriverDao;
@@ -14,7 +16,7 @@ public class DriverRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mDriverDao = database.driverDao();
     }
-
+    LiveData<List<Driver>> getAllDrivers(){return mDriverDao.getAllDrivers();}
     LiveData<Driver> GetDriverByUserId(int user_id){ return mDriverDao.getDriverByUserId(user_id); }
 
     public void insert(Driver driver){ mDriverDao.insert(driver); }

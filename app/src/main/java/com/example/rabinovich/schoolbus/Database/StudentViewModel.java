@@ -14,7 +14,7 @@ public class StudentViewModel extends AndroidViewModel {
         super(application);
         mRepository = new StudentRepository(application);
     }
-
+    public LiveData<List<Student>> getAllStudents(){return mRepository.getAllStudent();}
     public LiveData<Student> getStudentById(int student_id){return mRepository.getStudentById(student_id);}
     public LiveData<List<Student>> getStudentsByStopId(int stop_id){return mRepository.getStudentsByStopId(stop_id);}
     public LiveData<List<Student>> getStudentsByAge(int age){return mRepository.getStudentsByAge(age);}

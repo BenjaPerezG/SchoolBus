@@ -14,6 +14,9 @@ public interface GuardianDao {
     @Insert
     void insert(Guardian guardian);
 
+    @Query("SELECT * FROM guardian")
+    LiveData<List<Guardian>> getAllGuardian();
+
     @Query("SELECT * FROM guardian g WHERE g.notify = :notify")
     LiveData<List<Guardian>> getGuardiansByNotify(boolean notify);
 
