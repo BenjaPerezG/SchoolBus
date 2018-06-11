@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     String password;
     String firstName;
     String lastName;
+    int id;
+    boolean isAdmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
+        firstName = loginPreferences.getString("userFirstName", null);
+        lastName = loginPreferences.getString("userLastName", null);
+        id = loginPreferences.getInt("userId", 0);
+        isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
         if(email == null && password == null) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -138,8 +144,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             SharedPreferences.Editor prefEditor = loginPreferences.edit();
+            prefEditor.putInt("userId", data.getExtras().getInt("id"));
+            prefEditor.putString("userFirstName", data.getExtras().getString("first_name"));
+            prefEditor.putString("userLastName", data.getExtras().getString("last_name"));
             prefEditor.putString("userEmail", data.getExtras().getString("email"));
-            prefEditor.putString("userPwd", data.getExtras().getString("password"));
+            prefEditor.putString("userPassword", data.getExtras().getString("password"));
+            prefEditor.putBoolean("userIsAdmin", data.getExtras().getBoolean("is_admin"));
             prefEditor.commit();
             Context context = getApplicationContext();
             CharSequence text = "Login Successful";
