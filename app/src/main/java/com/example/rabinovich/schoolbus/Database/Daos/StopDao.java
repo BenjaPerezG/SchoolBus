@@ -14,6 +14,9 @@ public interface StopDao {
     @Insert
     void insert(Stop stp);
 
+    @Query("SELECT * FROM stop")
+    LiveData<List<Stop>> getAllStop();
+
     @Query("SELECT * FROM stop WHERE stop.id = :stop_id")
     LiveData<Stop> getStopById(int stop_id);
 

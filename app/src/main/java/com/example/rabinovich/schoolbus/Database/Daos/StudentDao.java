@@ -14,6 +14,9 @@ public interface StudentDao {
     @Insert
     void insert(Student student);
 
+    @Query("SELECT * FROM student")
+    LiveData<List<Student>> getAllStudent();
+
     @Query("SELECT * FROM student WHERE student.id = :student_id")
     LiveData<Student> getStudentById(int student_id);
 

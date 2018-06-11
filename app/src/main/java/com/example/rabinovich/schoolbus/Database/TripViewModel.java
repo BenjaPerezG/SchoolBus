@@ -16,7 +16,6 @@ public class TripViewModel extends AndroidViewModel {
         super(application);
         mRepository = new TripRepository(application);
     }
-
     public LiveData<Trip> getTripById(int id){ return mRepository.getTripById(id); }
     public LiveData<List<Trip>> getAllTrips(){ return mRepository.getAllTrips(); }
     public LiveData<List<Trip>> getTripsByDriverId(int driver_id){ return mRepository.getTripsByDriverId(driver_id); }

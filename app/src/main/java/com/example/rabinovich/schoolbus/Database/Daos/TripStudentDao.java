@@ -15,6 +15,9 @@ public interface TripStudentDao {
     @Insert
     void insert(TripStudent tripStudent);
 
+    @Query("SELECT * FROM tripstudent")
+    LiveData<List<TripStudent>> getAllTripStudent();
+
     @Query("SELECT ts.student_id FROM tripstudent ts WHERE ts.trip_id = :trip_id")
     LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id);
 

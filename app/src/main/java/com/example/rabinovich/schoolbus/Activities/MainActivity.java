@@ -39,17 +39,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+
         SetupNavigationView();
         SetupToolbar();
         SetupNavigationHomeButton();
         SetupDrawerListener();
+
         loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
         lastName = loginPreferences.getString("userLastName", null);
+   
         id = loginPreferences.getInt("userId", -1);
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
+
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -138,6 +142,24 @@ public class MainActivity extends AppCompatActivity {
                             ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
                             ft.commit();
                             return true;
+                        }
+                        if(id==R.id.nav_drivers){
+                            
+                        }
+                        if(id==R.id.nav_buses){
+
+                        }
+                        if(id==R.id.nav_stops){
+
+                        }
+                        if(id==R.id.nav_students){
+
+                        }
+                        if(id==R.id.nav_trips){
+
+                        }
+                        if(id==R.id.nav_users){
+
                         }
 
                         mDrawerLayout.closeDrawers();
