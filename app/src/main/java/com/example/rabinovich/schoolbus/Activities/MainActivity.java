@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void SetupNavigationView() {
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
