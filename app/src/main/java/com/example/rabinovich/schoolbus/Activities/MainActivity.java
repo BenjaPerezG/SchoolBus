@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.rabinovich.schoolbus.Database.DriverViewModel;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     int id;
     boolean isAdmin;
     UserViewModel userViewModel;
+    DriverViewModel driverViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        driverViewModel = ViewModelProviders.of(this).get(DriverViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -144,7 +148,13 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_drivers){
-                            
+                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel, driverViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, adminDriverFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                         }
                         if(id==R.id.nav_buses){
 
