@@ -1,5 +1,6 @@
 package com.example.rabinovich.schoolbus.Activities;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     String lastName;
     int id;
     boolean isAdmin;
+    UserViewModel userViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
         lastName = loginPreferences.getString("userLastName", null);
-        id = loginPreferences.getInt("userId", 0);
+        id = loginPreferences.getInt("userId", -1);
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
-        if(email == null && password == null) {
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
         }
@@ -57,7 +62,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        AdminMainFragment adminMainFragment = new AdminMainFragment(userViewModel);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+        transaction.replace(R.id.container, adminMainFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 
     private void SetupDrawerListener() {
