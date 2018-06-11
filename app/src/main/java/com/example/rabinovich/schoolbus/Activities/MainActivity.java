@@ -3,7 +3,6 @@ package com.example.rabinovich.schoolbus.Activities;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -18,9 +17,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.DriverViewModel;
+import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
+import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
+import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
 
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
     UserViewModel userViewModel;
     DriverViewModel driverViewModel;
+    StopViewModel stopViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         driverViewModel = ViewModelProviders.of(this).get(DriverViewModel.class);
+        stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -70,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        AdminMainFragment adminMainFragment = new AdminMainFragment(userViewModel);
+        AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, adminMainFragment);
@@ -140,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         int id = menuItem.getItemId();
-                        // close drawer when item is tapped 
+                        // close drawer when item is tapped
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         if(id==R.id.nav_trips){
-                            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                             ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
                             ft.commit();
                             return true;
@@ -160,7 +165,9 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         if(id==R.id.nav_stops){
-
+                            ft.replace(R.id.container, new StopFragment(stopViewModel)).addToBackStack("MainActivity");
+                            ft.commit();
+                            return true;
                         }
                         if(id==R.id.nav_students){
 

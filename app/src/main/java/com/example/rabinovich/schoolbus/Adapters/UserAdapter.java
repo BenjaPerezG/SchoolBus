@@ -9,33 +9,26 @@ import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.R;
 import com.example.rabinovich.schoolbus.Database.User;
-import com.example.rabinovich.schoolbus.Database.UserViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Sebastian on 10-06-18.
- */
 
 public class UserAdapter extends ArrayAdapter<User> {
 
 
-private List<User> dataSet;
-        Context mContext;
-private int lastPosition = -1;
+    private List<User> dataSet;
+    Context mContext;
+    private int lastPosition = -1;
 
-private static class ViewHolder {
-    TextView idTextView;
-    TextView firstNameTextView;
-    TextView lastNameTextView;
-    TextView emailTextView;
-    TextView isAdminTextView;
-}
-
+    private static class ViewHolder {
+        TextView idTextView;
+        TextView firstNameTextView;
+        TextView lastNameTextView;
+        TextView emailTextView;
+        TextView isAdminTextView;
+    }
 
     public UserAdapter(List<User> data, Context context) {
-        super(context, R.layout.fragment_admin_main, data);
+        super(context, R.layout.fragment_admin_users, data);
         this.dataSet = data;
         this.mContext=context;
 
