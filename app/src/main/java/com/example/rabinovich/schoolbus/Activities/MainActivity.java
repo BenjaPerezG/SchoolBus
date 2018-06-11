@@ -30,15 +30,18 @@ public class MainActivity extends AppCompatActivity {
     String lastName;
     int id;
     boolean isAdmin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+
         SetupNavigationView();
         SetupToolbar();
         SetupNavigationHomeButton();
         SetupDrawerListener();
+
         loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
@@ -114,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void SetupNavigationView() {
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.getMenu();
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override

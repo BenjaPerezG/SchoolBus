@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_users_icon"
+            android:title="Usuarios" />
+        <item
+            android:id="@+id/nav_buses"
+            android:icon="@drawable/ic_bus_icon"
+            android:title="Buses" />
+        <item
+            android:id="@+id/nav_drivers"
+            android:icon="@drawable/ic_driver_icon"
+            android:title="Conductores" />
+        <item
+            android:id="@+id/nav_trips"
+            android:icon="@drawable/ic_trip_icon"
+            android:title="@string/nav_trip" />
+        <item
+            android:id="@+id/nav_students"
+            android:icon="@drawable/ic_student_icon"
+            android:title="Alumnos"/>
+        <item
+            android:id="@+id/nav_stops"
+            android:icon="@drawable/ic_stop_icon"
+            android:title="Paradas"/>
+    </group>
+</menu>
