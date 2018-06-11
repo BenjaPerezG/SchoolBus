@@ -16,8 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
+import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
 import com.example.rabinovich.schoolbus.R;
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     int id;
     boolean isAdmin;
     UserViewModel userViewModel;
+    StopViewModel stopViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -135,21 +140,23 @@ public class MainActivity extends AppCompatActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         int id = menuItem.getItemId();
-                        // close drawer when item is tapped 
+                        // close drawer when item is tapped
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         if(id==R.id.nav_trips){
-                            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                             ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
                             ft.commit();
                             return true;
                         }
                         if(id==R.id.nav_drivers){
-                            
+
                         }
                         if(id==R.id.nav_buses){
 
                         }
                         if(id==R.id.nav_stops){
-
+                            ft.replace(R.id.container, new StopFragment(stopViewModel)).addToBackStack("MainActivity");
+                            ft.commit();
+                            return true;
                         }
                         if(id==R.id.nav_students){
 
