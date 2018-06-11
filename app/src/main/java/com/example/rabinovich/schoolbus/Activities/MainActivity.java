@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     UserViewModel userViewModel;
     DriverViewModel driverViewModel;
     StopViewModel stopViewModel;
-    Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         driverViewModel = ViewModelProviders.of(this).get(DriverViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
-            intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
         }
 
@@ -188,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                         if(id==R.id.nav_log_out){
                             SharedPreferences.Editor loginEditor = loginPreferences.edit();
                             loginEditor.clear().commit();
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             startActivityForResult(intent, 48);
                         }
 
