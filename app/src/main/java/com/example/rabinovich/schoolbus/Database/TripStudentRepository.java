@@ -16,7 +16,7 @@ public class TripStudentRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mTripStudentDao = database.tripStudentDao();
     }
-
+    LiveData<List<Integer>> getAllTripStudent(){return mTripStudentDao.getAllTripStudent();}
     LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id){return mTripStudentDao.getStudentsIdsByTripId(trip_id);}
     LiveData<List<Integer>> getTripsIdsByStudentId(int student_id){return mTripStudentDao.getTripsIdsByStudentId(student_id);}
 

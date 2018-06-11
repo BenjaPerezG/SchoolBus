@@ -16,7 +16,7 @@ public class TripStopRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mTripStopDao = database.tripStopDao();
     }
-
+    LiveData<List<TripStop>> getAllTripStop(){return mTripStopDao.getAllTripStop();}
     LiveData<List<Integer>> getStopsIdsByTripId(int trip_id){return mTripStopDao.getStopsIdsByTripId(trip_id);}
     LiveData<List<Integer>> getTripsIdsByStopId(int stop_id){return mTripStopDao.getTripsIdsByStopId(stop_id);}
 

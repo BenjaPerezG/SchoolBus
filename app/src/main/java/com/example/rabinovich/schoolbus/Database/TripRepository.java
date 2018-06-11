@@ -16,7 +16,7 @@ public class TripRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mTripDao = database.tripDao();
     }
-
+    LiveData<List<Trip>> getAllTrip(){return mTripDao.getAllTrips();}
     LiveData<Trip> getTripById(int id){ return mTripDao.getTripById(id); }
     LiveData<List<Trip>> getAllTrips(){ return mTripDao.getAllTrips(); }
     LiveData<List<Trip>> getTripsByDriverId(int driver_id){ return mTripDao.getTripsByDriverId(driver_id); }

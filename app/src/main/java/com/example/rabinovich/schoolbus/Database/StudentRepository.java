@@ -16,7 +16,7 @@ public class StudentRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mStudentDao = database.studentDao();
     }
-
+    LiveData<List<Student>> getAllStudent(){return mStudentDao.getAllStudent();}
     LiveData<Student> getStudentById(int student_id){return mStudentDao.getStudentById(student_id);}
     LiveData<List<Student>> getStudentsByStopId(int stop_id){return mStudentDao.getStudentsByStopId(stop_id);}
     LiveData<List<Student>> getStudentsByAge(int age){return mStudentDao.getStudentsByAge(age);}

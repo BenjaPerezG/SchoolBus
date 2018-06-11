@@ -16,7 +16,7 @@ public class GuardianRepository {
         AppDatabase database = AppDatabase.getDatabase(application);
         mGuardianDao = database.guardianDao();
     }
-
+    LiveData<List<Guardian>> getAllGuardians(){return mGuardianDao.getAllGuardian();}
     LiveData<List<Guardian>> getGuardiansByNotify(boolean notify){return mGuardianDao.getGuardiansByNotify(notify);}
     LiveData<Guardian> getGuardianByUserId(int user_id){return mGuardianDao.getGuardianByUserId(user_id);}
 
