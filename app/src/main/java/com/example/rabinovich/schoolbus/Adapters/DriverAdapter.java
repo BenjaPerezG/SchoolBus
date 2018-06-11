@@ -37,7 +37,7 @@ public class DriverAdapter extends ArrayAdapter<Driver> {
 
 
     public DriverAdapter(List<Driver> data, List<User> userData, Context context) {
-        super(context, R.layout.fragment_admin_main, data);
+        super(context, R.layout.fragment_admin_users, data);
         this.userViewModel = userViewModel;
         this.dataSet = data;
         this.userDataSet = userData;

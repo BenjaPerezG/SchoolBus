@@ -20,7 +20,6 @@ import com.example.rabinovich.schoolbus.Database.DriverViewModel;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
-import com.example.rabinovich.schoolbus.Fragments.AdminMainFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
@@ -176,7 +175,14 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         if(id==R.id.nav_users){
+                            AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+                            transaction.replace(R.id.container, adminMainFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
+                            return true;
                         }
 
                         mDrawerLayout.closeDrawers();
