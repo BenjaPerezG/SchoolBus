@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 48);
         } else {
             LoadCurrentUser();
-            LoadUi();
             SetupNavigationView();
+            LoadUi();
             SetupToolbar();
             SetupNavigationHomeButton();
             SetupDrawerListener();
@@ -84,27 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void LoadUi() {
         String user_type = current_user.getUser_type();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if(user_type == getString(R.string.user_type_admin)) {
-            this.setContentView(R.layout.main_content_admin);
+            navigationView.inflateMenu(R.menu.drawer_view_admin);
         }else if(user_type == getString(R.string.user_type_driver)) {
-            //load the driver menu
+            navigationView.inflateMenu(R.menu.drawer_view_driver);
         }else if(user_type == getString(R.string.user_type_guardian)){
-            //load the guardian menu
+            navigationView.inflateMenu(R.menu.drawer_view_guardian);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.replace(R.id.container, adminMainFragment);
-        transaction.addToBackStack(null);
-
-        transaction.commit();
-    }
 
     private void SetupDrawerListener() {
         mDrawerLayout.addDrawerListener(
