@@ -40,6 +40,7 @@ import android.widget.TextView;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminRegistrationFragment;
+import com.example.rabinovich.schoolbus.Fragments.RegistrationFragment;
 import com.example.rabinovich.schoolbus.R;
 
 import java.util.ArrayList;
@@ -227,12 +228,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private void registerNewAdmin() {
         // Create new fragment and transaction
-        AdminRegistrationFragment adminRegistrationFragment = new AdminRegistrationFragment(userViewModel);
+        RegistrationFragment registrationFragment = new RegistrationFragment(userViewModel);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
 // and add the transaction to the back stack
-        transaction.replace(R.id.login_main_layout, adminRegistrationFragment);
+        transaction.replace(R.id.login_main_layout, registrationFragment);
         transaction.addToBackStack(null);
         //LinearLayout loginLinearLayout = (LinearLayout) findViewById(R.id.login_lineal_layout);
         //loginLinearLayout.setVisibility(View.GONE);
@@ -341,6 +342,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
 
