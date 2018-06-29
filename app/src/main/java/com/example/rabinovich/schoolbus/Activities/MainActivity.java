@@ -65,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 48);
         } else {
             LoadCurrentUser();
-            SetupNavigationView();
-            LoadUi();
-            SetupToolbar();
-            SetupNavigationHomeButton();
-            SetupDrawerListener();
         }
     }
 
@@ -78,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable User user) {
                 current_user = user;
+                SetupNavigationView();
+                LoadUi();
+                SetupToolbar();
+                SetupNavigationHomeButton();
+                SetupDrawerListener();
             }
         });
     }
