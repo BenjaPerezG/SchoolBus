@@ -11,8 +11,7 @@ import java.util.Date;
  * Created by Rabinovich on 5/23/2018.
  */
 
-@Entity(foreignKeys = {@ForeignKey(entity = Driver.class, parentColumns = "user_id", childColumns = "driver_id"),
-                       @ForeignKey(entity = Bus.class, parentColumns = "id", childColumns = "bus_id")})
+@Entity
 public class Trip {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

@@ -9,8 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
  * Created by Rabinovich on 5/23/2018.
  */
 
-@Entity(foreignKeys = {@ForeignKey(entity = Guardian.class, parentColumns = "user_id", childColumns = "guardian_id"),
-                       @ForeignKey(entity = Stop.class, parentColumns = "id", childColumns = "stop_id")})
+@Entity
 public class Student {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

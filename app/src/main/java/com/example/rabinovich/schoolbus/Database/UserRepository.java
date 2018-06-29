@@ -23,7 +23,7 @@ public class UserRepository {
     }
 
     LiveData<List<User>> getAllUsers(){return mUserDao.getAllUsers();}
-    LiveData<List<User>> getAllAdminUsers(){return mUserDao.getAllAdminUsers();}
+    LiveData<List<User>> getUsersByUserType(String userType){return mUserDao.getUsersByUserType(userType);}
     LiveData<User> getUserById(int id){
         return mUserDao.getUserById(id);
     }

@@ -22,8 +22,8 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE user.id = :user_id")
     LiveData<User> getUserById(int user_id);
 
-    @Query("SELECT * FROM user u WHERE u.is_admin")
-    LiveData<List<User>> getAllAdminUsers();
+    @Query("SELECT * FROM user u WHERE u.user_type = :user_type")
+    LiveData<List<User>> getUsersByUserType(String user_type);
 
     @Update
     public void update(User user);

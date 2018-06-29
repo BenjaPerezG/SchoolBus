@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     loginData.putExtra("last_name", user.getLast_name());
                     loginData.putExtra("email", user.getEmail());
                     loginData.putExtra("password", user.getPassword());
-                    loginData.putExtra("is_admin", user.getIsAdmin());
+                    loginData.putExtra("is_admin", user.getUser_type() == getString(R.string.user_type_admin));
                     LoginActivity.this.setResult(RESULT_OK, loginData);
                     LoginActivity.this.finish();
                 }

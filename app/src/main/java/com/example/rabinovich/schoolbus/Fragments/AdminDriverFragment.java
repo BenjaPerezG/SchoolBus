@@ -14,9 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.rabinovich.schoolbus.Adapters.DriverAdapter;
-import com.example.rabinovich.schoolbus.Database.Driver;
-import com.example.rabinovich.schoolbus.Database.DriverViewModel;
+import com.example.rabinovich.schoolbus.Adapters.UserAdapter;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
@@ -28,12 +26,10 @@ import java.util.List;
 public class AdminDriverFragment extends Fragment {
 
     UserViewModel userViewModel;
-    DriverViewModel driverViewModel;
     ListView listView;
     @SuppressLint("ValidFragment")
-    public AdminDriverFragment(UserViewModel userViewModel, DriverViewModel driverViewModel) {
+    public AdminDriverFragment(UserViewModel userViewModel) {
         this.userViewModel = userViewModel;
-        this.driverViewModel = driverViewModel;
     }
 
 
@@ -55,25 +51,20 @@ public class AdminDriverFragment extends Fragment {
                 registerNewDriver();
             }
         });
-        driverViewModel.getAllDrivers().observe(getActivity(), new Observer<List<Driver>>() {
+
+        userViewModel.getUsersByUserType(getString(R.string.user_type_driver)).observe(getActivity(), new Observer<List<User>>() {
             @Override
-            public void onChanged(@Nullable final List<Driver> drivers) {
+            public void onChanged(@Nullable final List<User> drivers) {
 
-                userViewModel.getAllUsers().observe(getActivity(), new Observer<List<User>>() {
-                    @Override
-                    public void onChanged(@Nullable List<User> users) {
-                        listView = view.findViewById(R.id.driver_list_view);
-                        DriverAdapter adapter = new DriverAdapter(drivers, users, getContext());
-                        listView.setAdapter(adapter);
-                    }
-                });
-
+                listView = view.findViewById((R.id.driver_list_view));
+                UserAdapter adapter = new UserAdapter(drivers, getContext());
+                listView.setAdapter(adapter);
             }
         });
     }
 
     private void registerNewDriver(){
-        DiversRegistrationFragment driversRegistrationFragment = new DiversRegistrationFragment(userViewModel, driverViewModel);
+        DiversRegistrationFragment driversRegistrationFragment = new DiversRegistrationFragment(userViewModel);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, driversRegistrationFragment);

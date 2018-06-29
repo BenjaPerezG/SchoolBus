@@ -2,8 +2,6 @@ package com.example.rabinovich.schoolbus.Fragments;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,8 +13,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.rabinovich.schoolbus.Database.Driver;
-import com.example.rabinovich.schoolbus.Database.DriverViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
@@ -25,7 +21,6 @@ import com.example.rabinovich.schoolbus.R;
 @SuppressLint("ValidFragment")
 public class DiversRegistrationFragment extends Fragment {
     private UserViewModel userViewModel;
-    private DriverViewModel driverViewModel;
     private AutoCompleteTextView firstNameEditText;
     private AutoCompleteTextView lastNameEditText;
     private AutoCompleteTextView emailEditText;
@@ -33,10 +28,9 @@ public class DiversRegistrationFragment extends Fragment {
     private EditText confirmPasswordEditText;
     private EditText numberEditText;
     @SuppressLint("ValidFragment")
-    public DiversRegistrationFragment(UserViewModel userViewModel, DriverViewModel driverViewModel) {
+    public DiversRegistrationFragment(UserViewModel userViewModel) {
         // Required empty public constructor
         this.userViewModel = userViewModel;
-        this.driverViewModel = driverViewModel;
     }
 
 
@@ -76,17 +70,9 @@ public class DiversRegistrationFragment extends Fragment {
         user.setLast_name(lastNameEditText.getText().toString());
         user.setEmail(emailEditText.getText().toString());
         user.setPassword(passwordEditText.getText().toString());
-        user.setIsAdmin(false);
+        user.setUser_type(getString(R.string.user_type_driver));
         userViewModel.insert(user);
-        userViewModel.getUserByCredentials(emailEditText.getText().toString(),passwordEditText.getText().toString()).observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(@Nullable User user) {
-                Driver driver = new Driver();
-                driver.setUserId(user.getId());
-                driver.setNumber(numberEditText.getText().toString());
-                driverViewModel.insert(driver);
-            }
-        });
+
         getActivity().getSupportFragmentManager().popBackStack();
     }
 }

@@ -2,6 +2,7 @@ package com.example.rabinovich.schoolbus.Database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -29,8 +30,9 @@ public class User {
     @ColumnInfo(name = "email")
     private String email;
     @NonNull
-    @ColumnInfo(name = "is_admin")
-    private boolean isAdmin;
+    private String user_type;
+    @ColumnInfo(name = "phone_number")
+    private int phone_number;
 
     //Gets & sets
     public int getId() {
@@ -68,10 +70,9 @@ public class User {
         this.email = email;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
+    public String getUser_type() { return user_type; }
+    public void setUser_type(String userType) { this.user_type = userType; }
+
+    public int getPhone_number() { return phone_number; }
+    public void setPhone_number(int phone_number) { this.phone_number = phone_number; }
 }

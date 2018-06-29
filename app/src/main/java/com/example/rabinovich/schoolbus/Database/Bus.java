@@ -3,13 +3,14 @@ package com.example.rabinovich.schoolbus.Database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by Rabinovich on 5/23/2018.
  */
 
-@Entity(foreignKeys = @ForeignKey(entity = Driver.class, parentColumns = "user_id", childColumns = "driver_id"))
+@Entity
 public class Bus {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -17,7 +18,7 @@ public class Bus {
 
     //Foreign Keys
     @ColumnInfo(name = "driver_id")
-    private int driverId;
+    private int driver_id;
 
     //Gets& sets
     public int getId() {
@@ -27,10 +28,10 @@ public class Bus {
         this.id = id;
     }
 
-    public int getDriverId() {
-        return driverId;
+    public int getDriver_id() {
+        return driver_id;
     }
-    public void setDriverId(int driver_id) {
-        this.driverId = driver_id;
+    public void setDriver_id(int driver_id) {
+        this.driver_id = driver_id;
     }
 }

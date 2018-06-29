@@ -1,8 +1,10 @@
 package com.example.rabinovich.schoolbus.Activities;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -16,8 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.rabinovich.schoolbus.Database.DriverViewModel;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
+import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
@@ -37,20 +39,15 @@ public class MainActivity extends AppCompatActivity {
     int id;
     boolean isAdmin;
     UserViewModel userViewModel;
-    DriverViewModel driverViewModel;
     StopViewModel stopViewModel;
 
+    private User current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        SetupNavigationView();
-        SetupToolbar();
-        SetupNavigationHomeButton();
-        SetupDrawerListener();
 
         loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
@@ -62,13 +59,38 @@ public class MainActivity extends AppCompatActivity {
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        driverViewModel = ViewModelProviders.of(this).get(DriverViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
+        } else {
+            LoadCurrentUser();
+            LoadUi();
+            SetupNavigationView();
+            SetupToolbar();
+            SetupNavigationHomeButton();
+            SetupDrawerListener();
         }
+    }
 
+    private void LoadCurrentUser() {
+        userViewModel.getUserByCredentials(email, password).observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                current_user = user;
+            }
+        });
+    }
+
+    private void LoadUi() {
+        String user_type = current_user.getUser_type();
+        if(user_type == getString(R.string.user_type_admin)) {
+            this.setContentView(R.layout.main_content_admin);
+        }else if(user_type == getString(R.string.user_type_driver)) {
+            //load the driver menu
+        }else if(user_type == getString(R.string.user_type_guardian)){
+            //load the guardian menu
+        }
     }
 
     @Override
@@ -153,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_drivers){
-                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel, driverViewModel);
+                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, adminDriverFragment);

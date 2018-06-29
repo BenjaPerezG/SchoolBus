@@ -77,7 +77,7 @@ public class AdminRegistrationFragment extends Fragment {
         user.setLast_name(lastNameEditText.getText().toString());
         user.setEmail(emailEditText.getText().toString());
         user.setPassword(passwordEditText.getText().toString());
-        user.setIsAdmin(true);
+        user.setUser_type(getString(R.string.user_type_admin));
         userViewModel.insert(user);
         getActivity().getSupportFragmentManager().popBackStack();
     }

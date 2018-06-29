@@ -72,7 +72,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         viewHolder.lastNameTextView.setText(user.getLast_name());
         viewHolder.emailTextView.setText(user.getEmail());
         String isAdmin;
-        if (user.getIsAdmin()){
+        if (user.getUser_type() == getContext().getString(R.string.user_type_admin)){
             isAdmin = "Admin";
         }
         else{
