@@ -71,14 +71,20 @@ public class UserAdapter extends ArrayAdapter<User> {
         viewHolder.firstNameTextView.setText(user.getFirst_name());
         viewHolder.lastNameTextView.setText(user.getLast_name());
         viewHolder.emailTextView.setText(user.getEmail());
-        String isAdmin;
+        String isAdmin= null;
         if (user.getUser_type() == getContext().getString(R.string.user_type_admin)){
             isAdmin = "Admin";
+            viewHolder.isAdminTextView.setText(isAdmin);
         }
-        else{
-            isAdmin = "Non Admin";
+        else if (user.getUser_type()== getContext().getString(R.string.user_type_driver)) {
+            isAdmin = "Conductor";
+            viewHolder.isAdminTextView.setText(isAdmin);
         }
-        viewHolder.isAdminTextView.setText(isAdmin);
+        else if (user.getUser_type()==getContext().getString(R.string.user_type_guardian)){
+            isAdmin = "Apoderado";
+            viewHolder.isAdminTextView.setText(isAdmin);
+        }
+
         // Return the completed view to render on screen
         return convertView;
     }

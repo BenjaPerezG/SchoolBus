@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.rabinovich.schoolbus.Adapters.DriverAdapter;
 import com.example.rabinovich.schoolbus.Adapters.UserAdapter;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -57,7 +58,7 @@ public class AdminDriverFragment extends Fragment {
             public void onChanged(@Nullable final List<User> drivers) {
 
                 listView = view.findViewById((R.id.driver_list_view));
-                UserAdapter adapter = new UserAdapter(drivers, getContext());
+                DriverAdapter adapter = new DriverAdapter(drivers, getContext());
                 listView.setAdapter(adapter);
             }
         });

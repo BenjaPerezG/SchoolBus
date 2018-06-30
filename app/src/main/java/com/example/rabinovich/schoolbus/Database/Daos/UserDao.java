@@ -28,10 +28,7 @@ public interface UserDao {
     @Update
     public void update(User user);
 
-//////SEGUNDA ENTREGA///////////////////////////////////////////////////////////////////////////////
+
     @Query("SELECT * FROM user WHERE user.email = :email and user.password = :password")
     LiveData<User> getUserByCredentials(String email, String password);
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 }
