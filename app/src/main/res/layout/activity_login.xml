@@ -72,11 +72,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/user_type_array" />
+
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -86,14 +82,12 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
-            //////////////////////Segunda Entrega//////////////////////
 
             <Button
                 android:id="@+id/register_fragment_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/register" />
-            ///////////////////////////////////////////////////////////
 
         </LinearLayout>
 
