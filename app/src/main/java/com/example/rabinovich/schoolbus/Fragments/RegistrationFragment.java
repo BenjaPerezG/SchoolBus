@@ -59,7 +59,6 @@ public class RegistrationFragment extends Fragment {
         emailEditText = (AutoCompleteTextView) getView().findViewById(R.id.email_edit);
         passwordEditText = (EditText) getView().findViewById(R.id.password);
         confirmPasswordEditText = (EditText) getView().findViewById(R.id.confirm_password);
-        rollSpinner = (Spinner) getView().findViewById(R.id.spinner);
         Button mRegisterButton = (Button) getView().findViewById(R.id.register_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +75,7 @@ public class RegistrationFragment extends Fragment {
         user.setLast_name(lastNameEditText.getText().toString());
         user.setEmail(emailEditText.getText().toString());
         user.setPassword(passwordEditText.getText().toString());
-        user.setUser_type(rollSpinner.getSelectedItem().toString());
+        user.setUser_type(getString(R.string.user_type_admin));
         userViewModel.insert(user);
         getActivity().getSupportFragmentManager().popBackStack();
     }
