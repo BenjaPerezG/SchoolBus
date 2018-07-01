@@ -32,6 +32,8 @@ public class Student {
     private String classroom;
     @ColumnInfo(name = "rut")
     private String rut;
+    @ColumnInfo(name = "contact_phone")
+    private int contact_phone;
 
     //Gets & sets
     public int getId() {
@@ -89,4 +91,7 @@ public class Student {
     public void setRut(String rut) {
         this.rut = rut;
     }
+
+    public int getContact_phone() { return contact_phone; }
+    public void setContact_phone() { this.contact_phone = contact_phone; }
 }
