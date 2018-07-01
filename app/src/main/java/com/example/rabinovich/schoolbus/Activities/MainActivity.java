@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.rabinovich.schoolbus.Database.BusViewModel;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
@@ -26,6 +27,7 @@ import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
+import com.example.rabinovich.schoolbus.Fragments.BusFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.TripFragment;
 import com.example.rabinovich.schoolbus.R;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     StopViewModel stopViewModel;
     StudentViewModel studentViewModel;
     TripViewModel tripViewModel;
+    BusViewModel busViewModel;
 
 
     private User current_user;
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         tripViewModel = ViewModelProviders.of(this).get(TripViewModel.class);
+        busViewModel = ViewModelProviders.of(this).get(BusViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -184,6 +188,14 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
                         }
                         if(id==R.id.nav_buses){
+                            BusFragment busFragment = new BusFragment(busViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, busFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
+                            return true;
 
                         }
                         if(id==R.id.nav_stops){
