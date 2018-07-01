@@ -44,15 +44,16 @@ public class UserAdapter extends ArrayAdapter<User> {
         final View result;
 
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.user_list_element, parent, false);
 
-        viewHolder = new ViewHolder();
-        viewHolder.idTextView = convertView.findViewById(R.id.user_id);
-        viewHolder.firstNameTextView= convertView.findViewById(R.id.user_first_name);
-        viewHolder.lastNameTextView= convertView.findViewById(R.id.user_last_name);
-        viewHolder.emailTextView= convertView.findViewById(R.id.user_email);
-        viewHolder.isAdminTextView= convertView.findViewById(R.id.user_is_admin);
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.user_list_element, parent, false);
+
+            viewHolder = new ViewHolder();
+            viewHolder.idTextView = convertView.findViewById(R.id.user_id);
+            viewHolder.firstNameTextView = convertView.findViewById(R.id.user_first_name);
+            viewHolder.lastNameTextView = convertView.findViewById(R.id.user_last_name);
+            viewHolder.emailTextView = convertView.findViewById(R.id.user_email);
+            viewHolder.isAdminTextView = convertView.findViewById(R.id.user_is_admin);
 
 
         /*if (convertView == null) {
@@ -65,27 +66,18 @@ public class UserAdapter extends ArrayAdapter<User> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }*/
-        lastPosition = position;
+            lastPosition = position;
 
-        viewHolder.idTextView.setText(Integer.toString(user.getId()));
-        viewHolder.firstNameTextView.setText(user.getFirst_name());
-        viewHolder.lastNameTextView.setText(user.getLast_name());
-        viewHolder.emailTextView.setText(user.getEmail());
-        String isAdmin= null;
-        if (user.getUser_type() == getContext().getString(R.string.user_type_admin)){
-            isAdmin = "Admin";
-            viewHolder.isAdminTextView.setText(isAdmin);
-        }
-        else if (user.getUser_type()== getContext().getString(R.string.user_type_driver)) {
-            isAdmin = "Conductor";
-            viewHolder.isAdminTextView.setText(isAdmin);
-        }
-        else if (user.getUser_type()==getContext().getString(R.string.user_type_guardian)){
-            isAdmin = "Apoderado";
-            viewHolder.isAdminTextView.setText(isAdmin);
-        }
+            viewHolder.idTextView.setText(Integer.toString(user.getId()));
+            viewHolder.firstNameTextView.setText(user.getFirst_name());
+            viewHolder.lastNameTextView.setText(user.getLast_name());
+            viewHolder.emailTextView.setText(user.getEmail());
 
-        // Return the completed view to render on screen
+            viewHolder.isAdminTextView.setText(user.getUser_type());
+
+            // Return the completed view to render on screen
+
+
         return convertView;
     }
 }

@@ -1,10 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment">
-
-
+    tools:context=".Fragments.AdminStudentFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,18 +11,18 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/driver_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:id="@+id/student_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
         </ListView>
 
         <Button
-            android:id="@+id/add_driver_button"
+            android:id="@+id/add_student_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_driver" />
+            android:text="@string/add_alumno" />
     </LinearLayout>
 
-
-
-</RelativeLayout>
+</FrameLayout>

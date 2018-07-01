@@ -22,10 +22,11 @@ import com.example.rabinovich.schoolbus.R;
 
 import java.util.List;
 
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
 @SuppressLint("ValidFragment")
 public class AdminDriverFragment extends Fragment {
-
     UserViewModel userViewModel;
     ListView listView;
     @SuppressLint("ValidFragment")

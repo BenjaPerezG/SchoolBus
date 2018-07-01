@@ -25,6 +25,7 @@ public interface UserDao {
     @Query("SELECT * FROM user u WHERE u.user_type = :user_type")
     LiveData<List<User>> getUsersByUserType(String user_type);
 
+
     @Update
     public void update(User user);
 

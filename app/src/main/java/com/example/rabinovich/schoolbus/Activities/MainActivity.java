@@ -19,9 +19,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
+import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
+import com.example.rabinovich.schoolbus.Fragments.AdminStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
     UserViewModel userViewModel;
     StopViewModel stopViewModel;
+    StudentViewModel studentViewModel;
 
     private User current_user;
 
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -85,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
     private void LoadUi() {
         String user_type = current_user.getUser_type();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if(user_type == getString(R.string.user_type_admin)) {
+        if(user_type == getString(R.string.user_type_admin)){
             navigationView.inflateMenu(R.menu.drawer_view_admin);
-        }else if(user_type == getString(R.string.user_type_driver)) {
+        }else if(user_type == getString(R.string.user_type_driver)){
             navigationView.inflateMenu(R.menu.drawer_view_driver);
         }else if(user_type == getString(R.string.user_type_guardian)){
             navigationView.inflateMenu(R.menu.drawer_view_guardian);
@@ -181,7 +185,9 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_students){
-
+                            ft.replace(R.id.container, new AdminStudentFragment(studentViewModel));
+                            ft.commit();
+                            return true;
                         }
                         if(id==R.id.nav_trips){
 

@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/user_id"
+            android:id="@+id/student_id"
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentTop="true"
@@ -20,42 +20,59 @@
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/user_first_name"
+            android:id="@+id/student_age"
             android:layout_width="191dp"
             android:layout_height="19dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/user_id"
-            tools:layout_editor_absoluteX="149dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <TextView
-            android:id="@+id/user_last_name"
-            android:layout_width="191dp"
-            android:layout_height="19dp"
-            android:layout_alignBaseline="@+id/user_first_name"
-            android:layout_alignBottom="@+id/user_first_name"
-            android:layout_toEndOf="@+id/user_first_name"
+            android:layout_alignBaseline="@+id/student_id"
+            android:layout_alignBottom="@+id/student_id"
+            android:layout_toEndOf="@+id/student_id"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/user_email"
+            android:id="@+id/student_first_name"
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/user_last_name"
+            android:layout_below="@+id/student_id"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
 
         <TextView
-            android:id="@+id/user_is_admin"
+            android:id="@+id/student_last_name"
+            android:layout_width="191dp"
+            android:layout_height="19dp"
+            android:layout_alignBaseline="@+id/student_first_name"
+            android:layout_alignBottom="@+id/student_first_name"
+            android:layout_toEndOf="@+id/student_first_name"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/student_guardian"
+            android:layout_width="191dp"
+            android:layout_height="19dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/student_last_name"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/student_classroom"
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/user_last_name"
+            android:layout_below="@+id/student_last_name"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
-        
+
+        <TextView
+            android:id="@+id/student_stop"
+            android:layout_width="191dp"
+            android:layout_height="19dp"
+            android:layout_below="@+id/student_guardian"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="16dp" />
 
     </RelativeLayout>
 

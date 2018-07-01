@@ -51,6 +51,15 @@ public class DriverAdapter extends ArrayAdapter<User> {
         viewHolder.emailTextView= convertView.findViewById(R.id.user_email);
         viewHolder.driverNumber= convertView.findViewById(R.id.driver_number);
 
+        lastPosition = position;
+
+        viewHolder.idTextView.setText(Integer.toString(user.getId()));
+        viewHolder.firstNameTextView.setText(user.getFirst_name());
+        viewHolder.lastNameTextView.setText(user.getLast_name());
+        viewHolder.emailTextView.setText(user.getEmail());
+
+        viewHolder.driverNumber.setText(String.format("%d",user.getPhone_number()));
+
 
         return convertView;
     }
