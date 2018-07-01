@@ -1,5 +1,6 @@
 package com.example.rabinovich.schoolbus.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
@@ -44,7 +46,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.user_list_element, parent, false);
+        convertView = inflater.inflate(R.layout.stop_list_element, parent, false);
 
         viewHolder = new ViewHolder();
         viewHolder.idTextView = convertView.findViewById(R.id.stop_id);
@@ -68,7 +70,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
         viewHolder.idTextView.setText(Integer.toString(stop.getId()));
         viewHolder.comunaTextView.setText(stop.getComuna());
         viewHolder.streetTextView.setText(stop.getStreet());
-        viewHolder.numerationTextView.setText(stop.getNumeration());
+        viewHolder.numerationTextView.setText(Integer.toString(stop.getNumeration()));
         // Return the completed view to render on screen
         return convertView;
     }

@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -206,19 +207,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+            final Activity thisActivity = this;
             userViewModel.getUserByCredentials(email,password).observe(this, new Observer<User>() {
                 @Override
                 public void onChanged(@Nullable User user) {
-                    Intent loginData = new Intent();
-                    loginData.putExtra("id", user.getId());
-                    loginData.putExtra("first_name", user.getFirst_name());
-                    loginData.putExtra("last_name", user.getLast_name());
-                    loginData.putExtra("email", user.getEmail());
-                    loginData.putExtra("password", user.getPassword());
-                    loginData.putExtra("is_admin", user.getUser_type() == getString(R.string.user_type_admin));
-                    LoginActivity.this.setResult(RESULT_OK, loginData);
-                    LoginActivity.this.finish();
+                    if(user != null) {
+                        showProgress(true);
+                        Intent loginData = new Intent();
+                        loginData.putExtra("id", user.getId());
+                        loginData.putExtra("first_name", user.getFirst_name());
+                        loginData.putExtra("last_name", user.getLast_name());
+                        loginData.putExtra("email", user.getEmail());
+                        loginData.putExtra("password", user.getPassword());
+                        loginData.putExtra("is_admin", user.getUser_type() == getString(R.string.user_type_admin));
+                        LoginActivity.this.setResult(RESULT_OK, loginData);
+                        LoginActivity.this.finish();
+                    }
+                    else {
+                        Toast.makeText(thisActivity,"Usuario y/o contraseña incorrectos",
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
             });
 

@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.rabinovich.schoolbus.Adapters.StopAdapter;
@@ -47,6 +49,14 @@ public class StopFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Button mRegisterButton = (Button) getView().findViewById(R.id.add_stop_button);
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNewStop();
+            }
+        });
+
         stopViewModel.getAllStops().observe(getActivity(), new Observer<List<Stop>>() {
             @Override
             public void onChanged(@Nullable List<Stop> stops) {
@@ -55,5 +65,16 @@ public class StopFragment extends Fragment {
                 listView.setAdapter(adapter);
             }
         });
+    }
+
+
+    private void addNewStop(){
+        StopCreateFragment stopCreateFragment = new StopCreateFragment(stopViewModel);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.container, stopCreateFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 }
