@@ -202,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
 
                             transaction.replace(R.id.container, adminStudentFragment);
                             transaction.addToBackStack(null);
+
+                            transaction.commit();
                             return true;
                         }
                         if(id==R.id.nav_users){

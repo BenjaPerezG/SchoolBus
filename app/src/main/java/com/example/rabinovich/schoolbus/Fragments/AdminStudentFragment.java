@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.rabinovich.schoolbus.Adapters.StudentAdapter;
@@ -27,6 +28,8 @@ import java.util.List;
 public class AdminStudentFragment extends Fragment {
     StudentViewModel studentViewModel;
     ListView listView;
+
+
     @SuppressLint("ValidFragment")
     public AdminStudentFragment(StudentViewModel studentViewModel) {
         // Required empty public constructor
