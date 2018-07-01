@@ -76,7 +76,13 @@ public class AdminCreateUserFragment extends Fragment {
         user.setLast_name(lastNameEditText.getText().toString());
         user.setEmail(emailEditText.getText().toString());
         user.setPassword(passwordEditText.getText().toString());
-        user.setUser_type(rollSpinner.getSelectedItem().toString());
+        if (rollSpinner.getSelectedItem().toString() == "Administrador"){
+            user.setUser_type(getString(R.string.user_type_admin));
+        }else if(rollSpinner.getSelectedItem().toString() == "Conductor"){
+            user.setUser_type(getString(R.string.user_type_driver));
+        }else if(rollSpinner.getSelectedItem().toString() == "Apoderado"){
+            user.setUser_type(getString(R.string.user_type_guardian));
+        }
         userViewModel.insert(user);
         getActivity().getSupportFragmentManager().popBackStack();
     }

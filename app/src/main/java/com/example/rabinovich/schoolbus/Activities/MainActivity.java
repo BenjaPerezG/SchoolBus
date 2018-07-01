@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.Fragments.AdminCreateUserFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     SharedPreferences loginPreferences;
-    public static final String LOGIN_PREFERENCES = "LoginPrefs";
     String email;
     String password;
     String firstName;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
+        loginPreferences = getSharedPreferences(getString(R.string.shared_preferences_file), MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
@@ -197,8 +197,6 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_log_out){
-                            SharedPreferences.Editor loginEditor = loginPreferences.edit();
-                            loginEditor.clear().commit();
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             startActivityForResult(intent, 48);
                         }
@@ -234,5 +232,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void OpenUserCreateFragment(View view){
+        AdminCreateUserFragment adminCreateUserFragment = new AdminCreateUserFragment(userViewModel);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.container, adminCreateUserFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
+    }
 
 }
