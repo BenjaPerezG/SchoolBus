@@ -43,6 +43,7 @@
     <string name="user_type_admin">admin</string>
     <string name="user_type_driver">driver</string>
     <string name="user_type_guardian">guardian</string>
+    <string name="add_alumno">AÑADIR ALUMNO</string>
     <string name="stree_number">Numero</string>
     <string name="street_name">Calle</string>
     <string name="region_name">Comuna</string>

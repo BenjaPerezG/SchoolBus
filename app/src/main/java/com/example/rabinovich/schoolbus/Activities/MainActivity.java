@@ -19,10 +19,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
+import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
+import com.example.rabinovich.schoolbus.Fragments.AdminStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.TripFragment;
@@ -40,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
     UserViewModel userViewModel;
     StopViewModel stopViewModel;
+    StudentViewModel studentViewModel;
     TripViewModel tripViewModel;
+
 
     private User current_user;
 
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         tripViewModel = ViewModelProviders.of(this).get(TripViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -192,7 +197,12 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_students){
+                            AdminStudentFragment adminStudentFragment = new AdminStudentFragment(studentViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+                            transaction.replace(R.id.container, adminStudentFragment);
+                            transaction.addToBackStack(null);
+                            return true;
                         }
                         if(id==R.id.nav_users){
                             AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);

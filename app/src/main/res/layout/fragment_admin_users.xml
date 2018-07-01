@@ -11,18 +11,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ListView
                 android:id="@+id/user_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
             </ListView>
             <Button
                 android:id="@+id/add_user_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="OpenUserCreateFragment"
+
                 android:text="@string/add_user" />
         </LinearLayout>
 

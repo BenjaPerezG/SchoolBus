@@ -25,13 +25,11 @@ public interface UserDao {
     @Query("SELECT * FROM user u WHERE u.user_type = :user_type")
     LiveData<List<User>> getUsersByUserType(String user_type);
 
+
     @Update
     public void update(User user);
 
-//////SEGUNDA ENTREGA///////////////////////////////////////////////////////////////////////////////
+
     @Query("SELECT * FROM user WHERE user.email = :email and user.password = :password")
     LiveData<User> getUserByCredentials(String email, String password);
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 }
