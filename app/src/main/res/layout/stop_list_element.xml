@@ -15,7 +15,7 @@
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/user_is_admin"
+            android:layout_toStartOf="@+id/comuna"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
 
@@ -24,7 +24,7 @@
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/user_id"
+            android:layout_below="@+id/stop_id"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
 
@@ -33,7 +33,7 @@
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/user_id"
+            android:layout_below="@+id/comuna"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
 
@@ -42,7 +42,7 @@
             android:layout_width="191dp"
             android:layout_height="19dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/user_id"
+            android:layout_below="@+id/street"
             tools:layout_editor_absoluteX="149dp"
             tools:layout_editor_absoluteY="16dp" />
 

@@ -20,20 +20,20 @@ import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
+import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
-import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
+import com.example.rabinovich.schoolbus.Fragments.TripFragment;
 import com.example.rabinovich.schoolbus.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     SharedPreferences loginPreferences;
-    public static final String LOGIN_PREFERENCES = "LoginPrefs";
     String email;
     String password;
     String firstName;
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     UserViewModel userViewModel;
     StopViewModel stopViewModel;
     StudentViewModel studentViewModel;
+    TripViewModel tripViewModel;
+
 
     private User current_user;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        loginPreferences = getSharedPreferences(LOGIN_PREFERENCES, MODE_PRIVATE);
+        loginPreferences = getSharedPreferences(getString(R.string.shared_preferences_file), MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        tripViewModel = ViewModelProviders.of(this).get(TripViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -161,10 +164,14 @@ public class MainActivity extends AppCompatActivity {
                         menuItem.setChecked(true);
                         int id = menuItem.getItemId();
                         // close drawer when item is tapped
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         if(id==R.id.nav_trips){
-                            ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
-                            ft.commit();
+                            TripFragment tripFragment = new TripFragment(tripViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, tripFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                             return true;
                         }
                         if(id==R.id.nav_drivers){
@@ -180,17 +187,22 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         if(id==R.id.nav_stops){
-                            ft.replace(R.id.container, new StopFragment(stopViewModel)).addToBackStack("MainActivity");
-                            ft.commit();
+                            StopFragment stopFragment = new StopFragment(stopViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, stopFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                             return true;
                         }
                         if(id==R.id.nav_students){
-                            ft.replace(R.id.container, new AdminStudentFragment(studentViewModel));
-                            ft.commit();
-                            return true;
-                        }
-                        if(id==R.id.nav_trips){
+                            AdminStudentFragment adminStudentFragment = new AdminStudentFragment(studentViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+                            transaction.replace(R.id.container, adminStudentFragment);
+                            transaction.addToBackStack(null);
+                            return true;
                         }
                         if(id==R.id.nav_users){
                             AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
@@ -203,8 +215,6 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         if(id==R.id.nav_log_out){
-                            SharedPreferences.Editor loginEditor = loginPreferences.edit();
-                            loginEditor.clear().commit();
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                             startActivityForResult(intent, 48);
                         }
@@ -239,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
 
 
 }

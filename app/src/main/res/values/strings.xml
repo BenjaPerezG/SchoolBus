@@ -2,6 +2,8 @@
     <string name="app_name">SchoolBus</string>
     <string name="nav_trip">Viajes</string>
     <string name="title_activity_login">Sign in</string>
+    <!-- Shared preferences -->
+    <string name="shared_preferences_file">LoginPrefs</string>
 
     <!-- Strings related to login -->
     <string name="last_name">Apellido</string>
@@ -42,5 +44,10 @@
     <string name="user_type_driver">driver</string>
     <string name="user_type_guardian">guardian</string>
     <string name="add_alumno">AÑADIR ALUMNO</string>
+    <string name="stree_number">Numero</string>
+    <string name="street_name">Calle</string>
+    <string name="region_name">Comuna</string>
+    <string name="create_stop_button_text">Añadir</string>
+    <string name="appartment_details">Departamento (dejar vacio si es casa)</string>
 
 </resources>
