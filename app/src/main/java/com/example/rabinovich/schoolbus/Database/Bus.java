@@ -17,8 +17,8 @@ public class Bus {
     private int id;
 
     //Foreign Keys
-    @ColumnInfo(name = "driver_id")
-    private int driver_id;
+    @ColumnInfo(name = "plate")
+    private String plate;
 
     //Gets& sets
     public int getId() {
@@ -28,10 +28,10 @@ public class Bus {
         this.id = id;
     }
 
-    public int getDriver_id() {
-        return driver_id;
+    public String getPlate() {
+        return plate;
     }
-    public void setDriver_id(int driver_id) {
-        this.driver_id = driver_id;
+    public void setPlate(String driver_id) {
+        this.plate = plate;
     }
 }
