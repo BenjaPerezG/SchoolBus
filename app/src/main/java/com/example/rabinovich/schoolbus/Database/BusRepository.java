@@ -20,7 +20,7 @@ public class BusRepository {
 
     LiveData<List<Bus>> getAllBuses(){ return mBusDao.getAllBuses();}
     LiveData<Bus> getBusById(int bus_id){ return mBusDao.getBusById(bus_id);}
-    LiveData<Bus> getBusByDriverId(int driver_id){return mBusDao.getBusByDriverId(driver_id);}
+    LiveData<Bus> getBusByPlate(String plate){return mBusDao.getBusByPlate(plate);}
 
     public void insert (Bus bus){
         new insertAsyncTask(mBusDao).execute(bus);

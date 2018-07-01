@@ -16,6 +16,6 @@ public class BusViewModel extends AndroidViewModel {
     }
     public LiveData<List<Bus>> getAllBuses(){return mRepository.getAllBuses();}
     public LiveData<Bus> getBusById(int bus_id){return mRepository.getBusById(bus_id);}
-    public LiveData<Bus> getBusByDriverId(int driver_id){return mRepository.getBusByDriverId(driver_id);}
+    public LiveData<Bus> getBusByPlate(String plate){return mRepository.getBusByPlate(plate);}
     public void insert(Bus bus){mRepository.insert(bus);}
 }

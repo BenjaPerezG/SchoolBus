@@ -96,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
     private void LoadUi() {
         String user_type = current_user.getUser_type();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if(user_type == getString(R.string.user_type_admin)){
+        if(user_type.equals(getString(R.string.user_type_admin))){
             navigationView.inflateMenu(R.menu.drawer_view_admin);
-        }else if(user_type == getString(R.string.user_type_driver)){
+        }else if(user_type.equals(getString(R.string.user_type_driver))){
             navigationView.inflateMenu(R.menu.drawer_view_driver);
-        }else if(user_type == getString(R.string.user_type_guardian)){
+        }else if(user_type.equals(getString(R.string.user_type_guardian))){
             navigationView.inflateMenu(R.menu.drawer_view_guardian);
         }
     }

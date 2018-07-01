@@ -20,7 +20,7 @@ public interface BusDao {
     @Query("SELECT * FROM bus WHERE bus.id = :bus_id")
     LiveData<Bus> getBusById(int bus_id);
 
-    @Query("SELECT * FROM bus b WHERE b.driver_id = :driver_id")
-    LiveData<Bus> getBusByDriverId(int driver_id);
+    @Query("SELECT * FROM bus b WHERE b.plate = :plate")
+    LiveData<Bus> getBusByPlate(String plate);
 
 }
