@@ -3,24 +3,20 @@ package com.example.rabinovich.schoolbus.Fragments;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.example.rabinovich.schoolbus.Activities.LoginActivity;
 import com.example.rabinovich.schoolbus.Adapters.DriverAdapter;
-import com.example.rabinovich.schoolbus.Adapters.UserAdapter;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
@@ -67,6 +63,19 @@ public class AdminDriverFragment extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ShowUserFragment showUserFragment = new ShowUserFragment(userViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_driver = (TextView) view.findViewById(R.id.user_Id);
+                        String driver_id = id_driver.getText().toString();
+                        arguments.putString("Id", driver_id);
+                        showUserFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        transaction.replace(R.id.container, showUserFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
 
                     }
                 });

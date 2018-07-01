@@ -49,7 +49,7 @@ public class UserAdapter extends ArrayAdapter<User> {
             convertView = inflater.inflate(R.layout.user_list_element, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.idTextView = convertView.findViewById(R.id.user_id);
+            viewHolder.idTextView = convertView.findViewById(R.id.user_Id);
             viewHolder.firstNameTextView = convertView.findViewById(R.id.user_first_name);
             viewHolder.lastNameTextView = convertView.findViewById(R.id.user_last_name);
             viewHolder.emailTextView = convertView.findViewById(R.id.user_email);

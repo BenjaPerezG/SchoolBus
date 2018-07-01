@@ -14,8 +14,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Adapters.UserAdapter;
 import com.example.rabinovich.schoolbus.Database.User;
@@ -78,6 +80,25 @@ public class AdminUsersFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 listView = view.findViewById(R.id.user_list_view);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ShowUserFragment showUserFragment = new ShowUserFragment(userViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_user = (TextView) view.findViewById(R.id.user_Id);
+                        String current_id = id_user.getText().toString();
+                        arguments.putString("Id", current_id);
+                        showUserFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        transaction.replace(R.id.container, showUserFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
+
+                    }
+                });
                 UserAdapter adapter = new UserAdapter(users, getContext());
                 listView.setAdapter(adapter);
             }
