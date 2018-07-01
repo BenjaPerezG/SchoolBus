@@ -50,5 +50,12 @@
     <string name="create_stop_button_text">Añadir</string>
     <string name="appartment_details">Departamento (dejar vacio si es casa)</string>
     <string name="add_trip">Añadir Viaje</string>
+    <string name="id">ID</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="roll">Roll</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
+
 
 </resources>
