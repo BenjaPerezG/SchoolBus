@@ -19,13 +19,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
+import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
-import com.example.rabinovich.schoolbus.Fragments.AdminCreateUserFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
-import com.example.rabinovich.schoolbus.Fragments.ViajeFragment;
+import com.example.rabinovich.schoolbus.Fragments.TripFragment;
 import com.example.rabinovich.schoolbus.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isAdmin;
     UserViewModel userViewModel;
     StopViewModel stopViewModel;
+    TripViewModel tripViewModel;
 
     private User current_user;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         stopViewModel = ViewModelProviders.of(this).get(StopViewModel.class);
+        tripViewModel = ViewModelProviders.of(this).get(TripViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -157,10 +159,14 @@ public class MainActivity extends AppCompatActivity {
                         menuItem.setChecked(true);
                         int id = menuItem.getItemId();
                         // close drawer when item is tapped
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         if(id==R.id.nav_trips){
-                            ft.replace(R.id.content,new ViajeFragment()).addToBackStack("MainActivity");
-                            ft.commit();
+                            TripFragment tripFragment = new TripFragment(tripViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, tripFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                             return true;
                         }
                         if(id==R.id.nav_drivers){
@@ -176,14 +182,16 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         if(id==R.id.nav_stops){
-                            ft.replace(R.id.container, new StopFragment(stopViewModel)).addToBackStack("MainActivity");
-                            ft.commit();
+                            StopFragment stopFragment = new StopFragment(stopViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, stopFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
                             return true;
                         }
                         if(id==R.id.nav_students){
-
-                        }
-                        if(id==R.id.nav_trips){
 
                         }
                         if(id==R.id.nav_users){
@@ -232,15 +240,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void OpenUserCreateFragment(View view){
-        AdminCreateUserFragment adminCreateUserFragment = new AdminCreateUserFragment(userViewModel);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.container, adminCreateUserFragment);
-        transaction.addToBackStack(null);
-
-        transaction.commit();
-
-    }
 
 }

@@ -57,11 +57,19 @@ public class AdminUsersFragment extends Fragment {
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
 
+        Button mRegisterButton = (Button) getView().findViewById(R.id.add_user_button);
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenUserCreateFragment();
+            }
+        });
+
         userViewModel.getUserByCredentials(email, password).observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
                 if (!user.getUser_type().equals(getString(R.string.user_type_admin))){
-                    view.findViewById(R.id.button4).setVisibility(View.GONE);
+                    view.findViewById(R.id.add_user_button).setVisibility(View.GONE);
                 }
             }
         });
@@ -74,6 +82,17 @@ public class AdminUsersFragment extends Fragment {
                 listView.setAdapter(adapter);
             }
         });
+    }
+
+    public void OpenUserCreateFragment(){
+        AdminCreateUserFragment adminCreateUserFragment = new AdminCreateUserFragment(userViewModel);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.container, adminCreateUserFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
     }
 
 }
