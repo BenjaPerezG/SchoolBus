@@ -56,6 +56,10 @@
     <string name="roll">Roll</string>
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
+    <string name="street">Calle:</string>
+    <string name="comuna">Comuna:</string>
+    <string name="numeration">Numeracion:</string>
+    <string name="department">Departamento:</string>
 
 
 </resources>
