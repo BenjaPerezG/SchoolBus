@@ -11,9 +11,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.R;
@@ -31,7 +33,6 @@ public class ShowUserFragment extends Fragment {
     EditText last_show;
     EditText email_show;
     EditText type_show;
-    User current_user;
 
     public ShowUserFragment(UserViewModel userViewModel) {
         this.userViewModel = userViewModel;
@@ -66,11 +67,45 @@ public class ShowUserFragment extends Fragment {
                 last_show.setText(user.getLast_name());
                 email_show.setText(user.getEmail());
                 type_show.setText(user.getUser_type());
+
+
+                final User current_user=user;
+                Button mEditButton = (Button) getView().findViewById(R.id.user_edit);
+                mEditButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Edit(current_user);
+                    }
+                });
+
+                Button mDeleteButton = (Button) getView().findViewById(R.id.user_destroy);
+                mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Delete(current_user);
+                    }
+                });
             }
         });
 
 
+    }
 
+    public void Edit(User user){
+        user.setFirst_name(name_show.getText().toString());
+        user.setLast_name(last_show.getText().toString());
+        user.setEmail(email_show.getText().toString());
+        user.setUser_type(type_show.getText().toString());
+
+        userViewModel.update(user);
+
+        getActivity().getSupportFragmentManager().popBackStack();
+
+    }
+
+    public void Delete(User user){
+        userViewModel.delete(user);
+        getActivity().getSupportFragmentManager().popBackStack();
 
 
     }

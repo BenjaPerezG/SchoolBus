@@ -2,6 +2,7 @@ package com.example.rabinovich.schoolbus.Database.Daos;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -16,6 +17,12 @@ public interface UserDao {
     @Insert
     void insert(User user);
 
+    @Update
+    void update(User user);
+
+    @Delete
+    void delete(User user);
+
     @Query("SELECT * FROM user")
     LiveData<List<User>> getAllUsers();
 
@@ -24,10 +31,6 @@ public interface UserDao {
 
     @Query("SELECT * FROM user u WHERE u.user_type = :user_type")
     LiveData<List<User>> getUsersByUserType(String user_type);
-
-
-    @Update
-    public void update(User user);
 
 
     @Query("SELECT * FROM user WHERE user.email = :email and user.password = :password")
