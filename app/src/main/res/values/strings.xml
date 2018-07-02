@@ -50,7 +50,6 @@
     <string name="create_stop_button_text">Añadir</string>
     <string name="appartment_details">Departamento (dejar vacio si es casa)</string>
     <string name="add_trip">Añadir Viaje</string>
-<<<<<<< HEAD
     <string name="add_bus">Añadir Bus</string>
     <string name="create_bus_button_text">Añadir</string>
     <string name="plate_edit_text">Patente del Vehiculo</string>
@@ -58,7 +57,6 @@
     <string name="busLabel">Bus</string>
     <string name="create_trip_button_text">Crear Nuevo Viaje</string>
     <string name="dateLabel">Fecha</string>
-=======
     <string name="id">ID</string>
     <string name="nombre">Nombre</string>
     <string name="apellido">Apellido</string>
@@ -76,6 +74,5 @@
     <string name="student_classroom">Curso</string>
     <string name="student_rut">RUT</string>
     <string name="student_contact_phone">Telefono de contacto</string>
->>>>>>> 793120549c7bed6cfc49de146d55e11e7fb43fb3
 
 </resources>
