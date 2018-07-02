@@ -2,8 +2,10 @@ package com.example.rabinovich.schoolbus.Database.Daos;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.rabinovich.schoolbus.Database.Trip;
 
@@ -13,6 +15,12 @@ import java.util.List;
 public interface TripDao {
     @Insert
     void insert(Trip trip);
+
+    @Update
+    void update(Trip trip);
+
+    @Delete
+    void delete(Trip trip);
 
     @Query("SELECT * FROM trip")
     LiveData<List<Trip>> getAllTrips();

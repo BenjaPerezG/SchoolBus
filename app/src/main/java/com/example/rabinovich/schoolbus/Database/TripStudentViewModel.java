@@ -18,4 +18,6 @@ public class TripStudentViewModel extends AndroidViewModel {
     public LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id){return mRepository.getStudentsIdsByTripId(trip_id);}
     public LiveData<List<Integer>> getTripsIdsByStudentId(int student_id){return mRepository.getTripsIdsByStudentId(student_id);}
     public void insert(TripStudent tripStudent){mRepository.insert(tripStudent);}
+    public void update(TripStudent tripStudent){mRepository.update(tripStudent);}
+    public void delete(TripStudent tripStudent){mRepository.delete(tripStudent);}
 }

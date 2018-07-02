@@ -18,4 +18,7 @@ public class BusViewModel extends AndroidViewModel {
     public LiveData<Bus> getBusById(int bus_id){return mRepository.getBusById(bus_id);}
     public LiveData<Bus> getBusByPlate(String plate){return mRepository.getBusByPlate(plate);}
     public void insert(Bus bus){mRepository.insert(bus);}
+    public void update(Bus bus){mRepository.update(bus);}
+    public void delete(Bus bus){mRepository.delete(bus);}
+
 }

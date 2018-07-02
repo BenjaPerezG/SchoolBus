@@ -23,4 +23,6 @@ public class TripViewModel extends AndroidViewModel {
     public LiveData<List<Trip>> getmTripsByDate(String date){ return mRepository.getTripsByDate(date); }
 
     public void insert(Trip trip){ mRepository.insert(trip); }
+    public void update(Trip trip){ mRepository.update(trip); }
+    public void delete(Trip trip){ mRepository.delete(trip); }
 }
