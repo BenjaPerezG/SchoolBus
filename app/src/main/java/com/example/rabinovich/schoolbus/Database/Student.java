@@ -19,7 +19,7 @@ public class Student {
     @ColumnInfo(name = "guardian_id")
     private int guardian_id;
     @ColumnInfo(name = "stop_id")
-    private String stopId;
+    private int stop_id;
 
     //Attributes
     @ColumnInfo(name = "first_name")
@@ -57,11 +57,11 @@ public class Student {
         this.guardian_id = guardian_id;
     }
 
-    public String getStopId() {
-        return stopId;
+    public int getStop_id() {
+        return stop_id;
     }
-    public void setStopId(String stop_id) {
-        this.stopId = stop_id;
+    public void setStop_id(int stop_id) {
+        this.stop_id = stop_id;
     }
 
     public String getClassroom() {

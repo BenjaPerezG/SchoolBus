@@ -39,6 +39,8 @@ public class CreateStdentFragment extends Fragment {
 
     private ArrayList<String> mGuardians;
     private ArrayList<String> mStops;
+    private List<User> guardians;
+    private List<Stop> stopsList;
     
     private AutoCompleteTextView studentNameText;
     private AutoCompleteTextView studentLastNameText;
@@ -81,7 +83,7 @@ public class CreateStdentFragment extends Fragment {
         mRegistrationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                createNewStudent();
+                createNewStudent(guardians, stopsList);
             }
         });
         final Context context = getContext();
@@ -90,28 +92,32 @@ public class CreateStdentFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 mGuardians = new ArrayList<String>();
+                guardians = users;
                 for (Iterator<User> user = users.iterator(); user.hasNext();){
                     User this_user = user.next();
                     mGuardians.add(this_user.getFirst_name() + " " + this_user.getLast_name());
                 }
-                SetupGuardianSpinner(mGuardians, context);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, mGuardians);
+                studentGuardianSpinner.setAdapter(adapter);
             }
         });
 
         stopViewModel.getAllStops().observe(this, new Observer<List<Stop>>() {
             @Override
             public void onChanged(@Nullable List<Stop> stops) {
+                stopsList = stops;
                 mStops = new ArrayList<String>();
                 for (Iterator<Stop> stop = stops.iterator(); stop.hasNext();){
                     Stop this_stop = stop.next();
                     mStops.add(this_stop.getStreet() + " " + Integer.toString(this_stop.getNumeration()) + " " + this_stop.getComuna());
                 }
-                SetupStopSpinner(mStops, context);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, mStops);
+                studentStopSpinner.setAdapter(adapter);
             }
         });
     }
 
-    public void createNewStudent(){
+    public void createNewStudent(List<User> users, List<Stop> stops){
         Student student = new Student();
         student.setFirstName(studentNameText.getText().toString());
         student.setLastName(studentLastNameText.getText().toString());
@@ -119,19 +125,10 @@ public class CreateStdentFragment extends Fragment {
         student.setClassroom(studentClassroomText.getText().toString());
         student.setRut(studentRutText.getText().toString());
         student.setContact_phone(Integer.parseInt(studentContactPhoneText.getText().toString()));
+        student.setGuardian_id(guardians.get((int)studentGuardianSpinner.getSelectedItemId()).getId());
+        student.setStop_id(stopsList.get((int)studentStopSpinner.getSelectedItemId()).getId());
         studentViewModel.insert(student);
         getActivity().getSupportFragmentManager().popBackStack();
-    }
 
-    public void SetupGuardianSpinner(ArrayList<String> users, Context context){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, users);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        studentGuardianSpinner.setAdapter(adapter);
-    }
-
-    public void SetupStopSpinner(ArrayList<String> stops, Context context){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, stops);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        studentGuardianSpinner.setAdapter(adapter);
     }
 }

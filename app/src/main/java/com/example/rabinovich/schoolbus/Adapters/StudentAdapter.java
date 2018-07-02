@@ -77,11 +77,10 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.lastNameTextView.setText(student.getLastName());
         viewHolder.guardianTextView.setText("Apoderado: "+Integer.toString(student.getGuardian_id()));
         viewHolder.classRoomTextView.setText("Sala: "+student.getClassroom());
-        viewHolder.stopTextView.setText("Parada: "+student.getStopId());
+        viewHolder.stopTextView.setText("Parada: "+student.getStop_id());
 
 
         // Return the completed view to render on screen
-
 
         return convertView;
     }
