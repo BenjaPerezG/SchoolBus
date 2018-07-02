@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.rabinovich.schoolbus.Database.Stop;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
+import com.example.rabinovich.schoolbus.Database.Student;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -75,6 +77,13 @@ public class CreateStdentFragment extends Fragment {
         studentContactPhoneText = (AutoCompleteTextView) getView().findViewById(R.id.student_contact_phone_text);
         studentGuardianSpinner = (Spinner) getView().findViewById(R.id.guardian_spinner);
         studentStopSpinner = (Spinner) getView().findViewById(R.id.stop_spinner);
+        Button mRegistrationButton = (Button) getView().findViewById(R.id.create_student_button);
+        mRegistrationButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                createNewStudent();
+            }
+        });
         final Context context = getContext();
 
         userViewModel.getUsersByUserType(getString(R.string.user_type_guardian)).observe(this, new Observer<List<User>>() {
@@ -100,6 +109,18 @@ public class CreateStdentFragment extends Fragment {
                 SetupStopSpinner(mStops, context);
             }
         });
+    }
+
+    public void createNewStudent(){
+        Student student = new Student();
+        student.setFirstName(studentNameText.getText().toString());
+        student.setLastName(studentLastNameText.getText().toString());
+        student.setAge(Integer.parseInt(studentAgeText.getText().toString()));
+        student.setClassroom(studentClassroomText.getText().toString());
+        student.setRut(studentRutText.getText().toString());
+        student.setContact_phone(Integer.parseInt(studentContactPhoneText.getText().toString()));
+        studentViewModel.insert(student);
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 
     public void SetupGuardianSpinner(ArrayList<String> users, Context context){
