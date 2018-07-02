@@ -20,9 +20,9 @@ public class TripStopRepository {
     LiveData<List<Integer>> getStopsIdsByTripId(int trip_id){return mTripStopDao.getStopsIdsByTripId(trip_id);}
     LiveData<List<Integer>> getTripsIdsByStopId(int stop_id){return mTripStopDao.getTripsIdsByStopId(stop_id);}
 
-    public void insert(TripStop tripStop){mTripStopDao.insert(tripStop);}
-    public void update(TripStop tripStop){mTripStopDao.update(tripStop);}
-    public void delete(TripStop tripStop){mTripStopDao.delete(tripStop);}
+    public void insert(TripStop tripStop){new insertAsyncTask(mTripStopDao).execute(tripStop);}
+    public void update(TripStop tripStop){new updateAsyncTask(mTripStopDao).execute(tripStop);}
+    public void delete(TripStop tripStop){new deleteAsyncTask(mTripStopDao).execute(tripStop);}
 
     private static class insertAsyncTask extends AsyncTask<TripStop, Void, Void> {
 

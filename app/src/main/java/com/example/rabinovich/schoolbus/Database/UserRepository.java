@@ -31,13 +31,9 @@ public class UserRepository {
         return mUserDao.getUserByCredentials(email, password);
     }
 
-    public void insert (User user){
-        new insertAsyncTask(mUserDao).execute(user);
-    }
-
+    public void insert (User user) { new insertAsyncTask(mUserDao).execute(user); }
     public void update (User user) { new updateAsyncTask(mUserDao).execute(user); }
-
-    public void delete (User user) { new deleteAsyncTask(mUserDao).execute(user);}
+    public void delete (User user) { new deleteAsyncTask(mUserDao).execute(user); }
 
 
     private static class insertAsyncTask extends AsyncTask<User, Void, Void>{
