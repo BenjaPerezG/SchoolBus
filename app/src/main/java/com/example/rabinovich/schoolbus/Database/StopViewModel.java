@@ -19,4 +19,7 @@ public class StopViewModel extends AndroidViewModel {
     public LiveData<List<Stop>> getStopsByComuna(String comuna){return mRepository.getStopsByComuna(comuna);}
     public LiveData<List<Stop>> getStopsByFullAddress(String comuna, String street, int numeration){return mRepository.getStopsByFullAddress(comuna, street, numeration);}
     public void insert(Stop stop){mRepository.insert(stop);}
+    public void update(Stop stop){mRepository.update(stop);}
+    public void delete(Stop stop){mRepository.delete(stop);}
 }
+

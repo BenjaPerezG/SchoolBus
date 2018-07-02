@@ -22,4 +22,6 @@ public class StudentViewModel extends AndroidViewModel {
     public LiveData<List<Student>> getStudentsByGuardianId(int guardian_id){return mRepository.getStudentsByGuardianId(guardian_id);}
     public LiveData<List<Student>> getStudentByRut(String rut){return mRepository.getStudentByRut(rut);}
     public void insert(Student student){mRepository.insert(student);}
+    public void update(Student student){mRepository.update(student);}
+    public void delete(Student student){mRepository.delete(student);}
 }

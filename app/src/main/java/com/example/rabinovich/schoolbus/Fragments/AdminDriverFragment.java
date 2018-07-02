@@ -11,11 +11,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Adapters.DriverAdapter;
-import com.example.rabinovich.schoolbus.Adapters.UserAdapter;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
@@ -59,6 +60,25 @@ public class AdminDriverFragment extends Fragment {
             public void onChanged(@Nullable final List<User> drivers) {
 
                 listView = view.findViewById((R.id.driver_list_view));
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ShowUserFragment showUserFragment = new ShowUserFragment(userViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_driver = (TextView) view.findViewById(R.id.user_Id);
+                        String driver_id = id_driver.getText().toString();
+                        arguments.putString("Id", driver_id);
+                        showUserFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        transaction.replace(R.id.container, showUserFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
+
+                    }
+                });
                 DriverAdapter adapter = new DriverAdapter(drivers, getContext());
                 listView.setAdapter(adapter);
             }

@@ -24,7 +24,9 @@ public class StudentRepository {
     LiveData<List<Student>> getStudentsByGuardianId(int guardian_id){return mStudentDao.getStudentsByGuardianId(guardian_id);}
     LiveData<List<Student>> getStudentByRut(String rut){return mStudentDao.getStudentByRut(rut);}
 
-    public void insert(Student student){mStudentDao.insert(student);}
+    public void insert(Student student){new insertAsyncTask(mStudentDao).execute(student);}
+    public void update(Student student){new updateAsyncTask(mStudentDao).execute(student);}
+    public void delete(Student student){new deleteAsyncTask(mStudentDao).execute(student);}
 
     private static class insertAsyncTask extends AsyncTask<com.example.rabinovich.schoolbus.Database.Student, Void, Void> {
 
@@ -37,6 +39,36 @@ public class StudentRepository {
         @Override
         protected Void doInBackground(final Student... params){
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<com.example.rabinovich.schoolbus.Database.Student, Void, Void> {
+
+        private StudentDao mAsyncTaskDao;
+
+        updateAsyncTask(StudentDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Student... params){
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<com.example.rabinovich.schoolbus.Database.Student, Void, Void> {
+
+        private StudentDao mAsyncTaskDao;
+
+        deleteAsyncTask(StudentDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Student... params){
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }

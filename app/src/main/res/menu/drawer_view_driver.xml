@@ -3,13 +3,9 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_students"
+            android:id="@+id/nav_trips"
             android:icon="@drawable/ic_student_icon"
-            android:title="Alumnos"/>
-        <item
-            android:id="@+id/nav_stops"
-            android:icon="@drawable/ic_stop_icon"
-            android:title="Paradas"/>
+            android:title="@string/nav_trip"/>
         <item
             android:id="@+id/nav_log_out"
             android:title="Log out"/>

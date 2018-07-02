@@ -18,4 +18,6 @@ public class TripStopViewModel extends AndroidViewModel {
     public LiveData<List<Integer>> getStopsIdsByTripId(int trip_id){return mRepository.getStopsIdsByTripId(trip_id);}
     public LiveData<List<Integer>> getTripsIdsByStopId(int stop_id){return mRepository.getTripsIdsByStopId(stop_id);}
     public void insert(TripStop tripStop){mRepository.insert(tripStop);}
+    public void update(TripStop tripStop){mRepository.update(tripStop);}
+    public void delete(TripStop tripStop){mRepository.delete(tripStop);}
 }

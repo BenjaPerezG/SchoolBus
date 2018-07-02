@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.rabinovich.schoolbus.Adapters.StudentAdapter;
+import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.Student;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
+import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
 
 import java.util.List;
@@ -26,11 +31,17 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class AdminStudentFragment extends Fragment {
     StudentViewModel studentViewModel;
+    UserViewModel userViewModel;
+    StopViewModel stopViewModel;
     ListView listView;
+
+
     @SuppressLint("ValidFragment")
-    public AdminStudentFragment(StudentViewModel studentViewModel) {
+    public AdminStudentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
         // Required empty public constructor
         this.studentViewModel = studentViewModel;
+        this.userViewModel = userViewModel;
+        this.stopViewModel = stopViewModel;
     }
 
 
@@ -45,6 +56,14 @@ public class AdminStudentFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Button mCreateStudentButton = (Button) getView().findViewById(R.id.add_student_button);
+        mCreateStudentButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                OpenCreateStudentFragment();
+            }
+        });
+
         studentViewModel.getAllStudents().observe(getActivity(), new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
@@ -53,5 +72,15 @@ public class AdminStudentFragment extends Fragment {
                 listView.setAdapter(adapter);
             }
         });
+    }
+
+    public void OpenCreateStudentFragment(){
+        CreateStdentFragment createStdentFragment = new CreateStdentFragment(studentViewModel, userViewModel, stopViewModel);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.container, createStdentFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 }

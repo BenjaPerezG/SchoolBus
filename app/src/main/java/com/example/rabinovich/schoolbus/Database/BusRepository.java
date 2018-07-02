@@ -25,6 +25,9 @@ public class BusRepository {
     public void insert (Bus bus){
         new insertAsyncTask(mBusDao).execute(bus);
     }
+    public void update (Bus bus) { new updateAsyncTask(mBusDao).execute(bus); }
+    public void delete (Bus bus) { new deleteAsyncTask(mBusDao).execute(bus); }
+
 
     private static class insertAsyncTask extends AsyncTask<Bus, Void, Void> {
 
@@ -37,6 +40,36 @@ public class BusRepository {
         @Override
         protected Void doInBackground(final Bus... params){
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<Bus, Void, Void> {
+
+        private BusDao mAsyncTaskDao;
+
+        updateAsyncTask(BusDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Bus... params){
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Bus, Void, Void> {
+
+        private BusDao mAsyncTaskDao;
+
+        deleteAsyncTask(BusDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Bus... params){
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }

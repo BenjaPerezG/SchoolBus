@@ -209,12 +209,14 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
                         }
                         if(id==R.id.nav_students){
-                            AdminStudentFragment adminStudentFragment = new AdminStudentFragment(studentViewModel);
+                            AdminStudentFragment adminStudentFragment = new AdminStudentFragment(studentViewModel, userViewModel, stopViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, adminStudentFragment);
                             transaction.addToBackStack(null);
 
+                            transaction.commit();
+                            return true;
                         }
                         if(id==R.id.nav_users){
                             AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);

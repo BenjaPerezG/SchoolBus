@@ -20,7 +20,9 @@ public class TripStopRepository {
     LiveData<List<Integer>> getStopsIdsByTripId(int trip_id){return mTripStopDao.getStopsIdsByTripId(trip_id);}
     LiveData<List<Integer>> getTripsIdsByStopId(int stop_id){return mTripStopDao.getTripsIdsByStopId(stop_id);}
 
-    public void insert(TripStop tripStop){mTripStopDao.insert(tripStop);}
+    public void insert(TripStop tripStop){new insertAsyncTask(mTripStopDao).execute(tripStop);}
+    public void update(TripStop tripStop){new updateAsyncTask(mTripStopDao).execute(tripStop);}
+    public void delete(TripStop tripStop){new deleteAsyncTask(mTripStopDao).execute(tripStop);}
 
     private static class insertAsyncTask extends AsyncTask<TripStop, Void, Void> {
 
@@ -33,6 +35,36 @@ public class TripStopRepository {
         @Override
         protected Void doInBackground(final TripStop... params){
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<TripStop, Void, Void> {
+
+        private TripStopDao mAsyncTaskDao;
+
+        updateAsyncTask(TripStopDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final TripStop... params){
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<TripStop, Void, Void> {
+
+        private TripStopDao mAsyncTaskDao;
+
+        deleteAsyncTask(TripStopDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final TripStop... params){
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }
