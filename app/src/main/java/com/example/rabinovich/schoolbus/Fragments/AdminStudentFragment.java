@@ -17,8 +17,10 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.rabinovich.schoolbus.Adapters.StudentAdapter;
+import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.Student;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
+import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
 
 import java.util.List;
@@ -29,13 +31,17 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class AdminStudentFragment extends Fragment {
     StudentViewModel studentViewModel;
+    UserViewModel userViewModel;
+    StopViewModel stopViewModel;
     ListView listView;
 
 
     @SuppressLint("ValidFragment")
-    public AdminStudentFragment(StudentViewModel studentViewModel) {
+    public AdminStudentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
         // Required empty public constructor
         this.studentViewModel = studentViewModel;
+        this.userViewModel = userViewModel;
+        this.stopViewModel = stopViewModel;
     }
 
 
@@ -69,7 +75,7 @@ public class AdminStudentFragment extends Fragment {
     }
 
     public void OpenCreateStudentFragment(){
-        CreateStdentFragment createStdentFragment = new CreateStdentFragment(studentViewModel);
+        CreateStdentFragment createStdentFragment = new CreateStdentFragment(studentViewModel, userViewModel, stopViewModel);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, createStdentFragment);

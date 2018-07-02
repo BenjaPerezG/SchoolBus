@@ -93,5 +93,7 @@ public class Student {
     }
 
     public int getContact_phone() { return contact_phone; }
-    public void setContact_phone() { this.contact_phone = contact_phone; }
+    public void setContact_phone(int contact_phone) {
+        this.contact_phone = contact_phone;
+    }
 }
