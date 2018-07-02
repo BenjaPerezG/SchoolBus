@@ -66,7 +66,7 @@ public class MyTripRecyclerViewAdapter extends RecyclerView.Adapter<MyTripRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
+            mIdView = (TextView) view.findViewById(R.id.id_view);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
