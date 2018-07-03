@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         int id = menuItem.getItemId();
                         // close drawer when item is tapped
                         if(id==R.id.nav_trips){
-                            TripFragment tripFragment = new TripFragment(tripViewModel, userViewModel, busViewModel);
+                            TripFragment tripFragment = new TripFragment(tripViewModel, userViewModel, busViewModel, current_user);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, tripFragment);

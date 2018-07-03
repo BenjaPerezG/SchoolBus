@@ -26,7 +26,11 @@ public class Trip {
     //Attributes
     @ColumnInfo(name = "date")
     private String date;
-    //Date format: "MM-DD-YYYY"
+    //Date format: "DD-MM-YYYY"
+
+    @ColumnInfo(name= "hour")
+    private String hour;
+    //Hour format: "hh:mm:ss"
 
     //Gets & sets
     public int getId() {
@@ -56,4 +60,7 @@ public class Trip {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getHour() { return hour; }
+    public void setHour(String hour) { this.hour = hour; }
 }
