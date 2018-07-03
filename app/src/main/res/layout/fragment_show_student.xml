@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.ShowStudentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/id_student_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/id" />
+
+    <TextView
+        android:id="@+id/age_student_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/age_student_edit"
+        android:layout_alignStart="@+id/id_student_show"
+        android:text="@string/edad" />
+
+    <TextView
+        android:id="@+id/student_name_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginTop="126dp"
+        android:text="@string/nombre" />
+
+    <TextView
+        android:id="@+id/student_lastName_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginTop="171dp"
+        android:text="@string/apellido" />
+
+    <TextView
+        android:id="@+id/student_guardian_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginTop="217dp"
+        android:text="@string/guardian" />
+
+    <TextView
+        android:id="@+id/class_student_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_centerVertical="true"
+        android:text="@string/salas" />
+
+    <TextView
+        android:id="@+id/student_stop_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginBottom="222dp"
+        android:text="@string/stops" />
+
+    <Button
+        android:id="@+id/edit_student"
+        android:layout_width="278dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginBottom="134dp"
+        android:text="@string/editar" />
+
+    <Button
+        android:id="@+id/delete_student"
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginBottom="67dp"
+        android:text="@string/borrar" />
+
+    <TextView
+        android:id="@+id/id_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_alignTop="@+id/id_student_show"
+        android:text="@string/id" />
+
+    <EditText
+        android:id="@+id/age_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/id_student_show"
+        android:layout_marginEnd="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/edad" />
+
+    <EditText
+        android:id="@+id/name_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_below="@+id/age_student_edit"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/nombre" />
+
+    <EditText
+        android:id="@+id/lastName_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_below="@+id/name_student_edit"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/last_name" />
+
+    <EditText
+        android:id="@+id/class_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/salas" />
+
+    <Spinner
+        android:id="@+id/guardian_student_edit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/student_guardian_show"
+        android:layout_marginStart="129dp" />
+
+    <Spinner
+        android:id="@+id/stop_student_edit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/student_stop_show"
+        android:layout_marginStart="127dp" />
+</RelativeLayout>
