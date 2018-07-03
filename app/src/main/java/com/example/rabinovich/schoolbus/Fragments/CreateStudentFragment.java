@@ -32,7 +32,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 @SuppressLint("ValidFragment")
-public class CreateStdentFragment extends Fragment {
+public class CreateStudentFragment extends Fragment {
     private StudentViewModel studentViewModel;
     private UserViewModel userViewModel;
     private StopViewModel stopViewModel;
@@ -51,7 +51,7 @@ public class CreateStdentFragment extends Fragment {
     private Spinner studentGuardianSpinner;
     private Spinner studentStopSpinner;
 
-    public CreateStdentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
+    public CreateStudentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
         // Required empty public constructor
         this.studentViewModel = studentViewModel;
         this.userViewModel = userViewModel;

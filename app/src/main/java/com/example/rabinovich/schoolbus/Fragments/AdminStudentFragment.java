@@ -2,8 +2,6 @@ package com.example.rabinovich.schoolbus.Fragments;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Adapters.StudentAdapter;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
@@ -68,7 +67,25 @@ public class AdminStudentFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 listView = view.findViewById(R.id.student_list_view);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ShowStudentFragment showStudentFragment = new ShowStudentFragment(studentViewModel, userViewModel,stopViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_student = (TextView) view.findViewById(R.id.student_id);
+                        Integer current_id = Integer.parseInt(id_student.getText().toString());
+                        arguments.putInt("Id", current_id);
+                        showStudentFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
+                        transaction.replace(R.id.container, showStudentFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
+
+                    }
+                });
                 StudentAdapter adapter = new StudentAdapter(students, getContext());
                 listView.setAdapter(adapter);
             }
@@ -76,10 +93,10 @@ public class AdminStudentFragment extends Fragment {
     }
 
     public void OpenCreateStudentFragment(){
-        CreateStdentFragment createStdentFragment = new CreateStdentFragment(studentViewModel, userViewModel, stopViewModel);
+        CreateStudentFragment createStudentFragment = new CreateStudentFragment(studentViewModel, userViewModel, stopViewModel);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-        transaction.replace(R.id.container, createStdentFragment);
+        transaction.replace(R.id.container, createStudentFragment);
         transaction.addToBackStack(null);
 
         transaction.commit();

@@ -82,5 +82,8 @@
     <string name="fecha">Fecha</string>
     <string name="patente_del_bus">Patente del Bus</string>
     <string name="textview">TextView</string>
+    <string name="guardian">Apoderado</string>
+    <string name="stops">Parada</string>
+    <string name="salas">Sala</string>
 
 </resources>
