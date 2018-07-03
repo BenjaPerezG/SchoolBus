@@ -56,13 +56,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         loginPreferences = getSharedPreferences(getString(R.string.shared_preferences_file), MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
         lastName = loginPreferences.getString("userLastName", null);
-   
+
         id = loginPreferences.getInt("userId", -1);
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
