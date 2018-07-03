@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -26,8 +28,11 @@ import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +48,8 @@ public class TripCreateFragment extends Fragment {
 
     private Spinner driverSpinner;
     private Spinner busSpinner;
-    private EditText dateEditText;
+    private CalendarView datePicker;
+    private String date;
 
     public TripCreateFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel) {
         this.tripViewModel = tripViewModel;
@@ -65,7 +71,15 @@ public class TripCreateFragment extends Fragment {
         final Context context = getContext();
         driverSpinner = (Spinner) getView().findViewById(R.id.driver_spinner);
         busSpinner = (Spinner) getView().findViewById(R.id.bus_spinner);
-        dateEditText = (EditText) getView().findViewById(R.id.date_text_edit);
+        datePicker = (CalendarView) getView().findViewById(R.id.trip_date_picker);
+        date = "01-01-1900";
+        datePicker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
+            }
+        });
+
         
         userViewModel.getUsersByUserType("driver").observe(getActivity(), new Observer<List<User>>() {
             @Override
@@ -107,7 +121,7 @@ public class TripCreateFragment extends Fragment {
         Trip trip = new Trip();
         trip.setDriverId(users.get((int)driverSpinner.getSelectedItemId()).getId());
         trip.setBusId(buses.get((int)busSpinner.getSelectedItemId()).getId());
-        trip.setDate(dateEditText.getText().toString());
+        trip.setDate(date);
         tripViewModel.insert(trip);
         getActivity().getSupportFragmentManager().popBackStack();
     }

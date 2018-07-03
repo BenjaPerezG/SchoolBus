@@ -19,7 +19,9 @@ import android.widget.TextView;
 import com.example.rabinovich.schoolbus.Adapters.TripAdapter;
 import com.example.rabinovich.schoolbus.Database.Bus;
 import com.example.rabinovich.schoolbus.Database.BusViewModel;
+import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.Trip;
+import com.example.rabinovich.schoolbus.Database.TripStudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -33,20 +35,23 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class TripFragment extends Fragment {
 
-    User current_user;
     TripViewModel tripViewModel;
     UserViewModel userViewModel;
     BusViewModel busViewModel;
+    TripStudentViewModel tripStudentViewModel;
+    StudentViewModel studentViewModel;
     List<User> users;
     List<Bus> buses;
 
     private ListView listView;
 
-    public TripFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel, User current_user) {
+    public TripFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel, StudentViewModel studentViewModel, TripStudentViewModel tripStudentViewModel) {
         this.tripViewModel = tripViewModel;
         this.busViewModel = busViewModel;
         this.userViewModel = userViewModel;
-        this.current_user = current_user;
+        this.studentViewModel = studentViewModel;
+        this.tripStudentViewModel = tripStudentViewModel;
+
     }
 
 
@@ -82,63 +87,33 @@ public class TripFragment extends Fragment {
             }
         });
 
-        if(current_user.getUser_type().equals(getString(R.string.user_type_admin).toString())) {
-            tripViewModel.getAllTrips().observe(getActivity(), new Observer<List<Trip>>() {
-                @Override
-                public void onChanged(@Nullable List<Trip> trips) {
-                    listView = view.findViewById(R.id.trip_list_view);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel);
-                            Bundle arguments = new Bundle();
-                            TextView id_trip = (TextView) view.findViewById(R.id.id_view);
-                            Integer current_id = Integer.parseInt(id_trip.getText().toString());
-                            arguments.putInt("Id", current_id);
-                            tripShowFragment.setArguments(arguments);
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        tripViewModel.getAllTrips().observe(getActivity(), new Observer<List<Trip>>() {
+            @Override
+            public void onChanged(@Nullable List<Trip> trips) {
+                listView = view.findViewById(R.id.trip_list_view);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel, userViewModel, busViewModel, studentViewModel, tripStudentViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_trip = (TextView) view.findViewById(R.id.id_view);
+                        Integer current_id = Integer.parseInt(id_trip.getText().toString());
+                        arguments.putInt("Id", current_id);
+                        tripShowFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                            transaction.replace(R.id.container, tripShowFragment);
-                            transaction.addToBackStack(null);
+                        transaction.replace(R.id.container, tripShowFragment);
+                        transaction.addToBackStack(null);
 
-                            transaction.commit();
-
-
-                        }
-                    });
-                    TripAdapter adapter = new TripAdapter(trips, getContext(), users, buses);
-                    listView.setAdapter(adapter);
-                }
-            });
-        }else if(current_user.getUser_type().equals(getString(R.string.user_type_driver).toString())){
-            tripViewModel.getTripsByDriverId(current_user.getId()).observe(this, new Observer<List<Trip>>() {
-                @Override
-                public void onChanged(@Nullable List<Trip> trips) {
-                    listView = view.findViewById(R.id.trip_list_view);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel);
-                            Bundle arguments = new Bundle();
-                            TextView id_trip = (TextView) view.findViewById(R.id.id_view);
-                            Integer current_id = Integer.parseInt(id_trip.getText().toString());
-                            arguments.putInt("Id", current_id);
-                            tripShowFragment.setArguments(arguments);
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
-                            transaction.replace(R.id.container, tripShowFragment);
-                            transaction.addToBackStack(null);
-
-                            transaction.commit();
+                        transaction.commit();
 
 
-                        }
-                    });
-                    TripAdapter adapter = new TripAdapter(trips, getContext(), users, buses);
-                    listView.setAdapter(adapter);
-                }
-            });
-        }
+                    }
+                });
+                TripAdapter adapter = new TripAdapter(trips, getContext(), users, buses);
+                listView.setAdapter(adapter);
+            }
+        });
     }
 
     public void OpenTripCreateFragment(){

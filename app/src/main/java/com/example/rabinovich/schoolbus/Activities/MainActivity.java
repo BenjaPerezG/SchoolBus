@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.rabinovich.schoolbus.Database.BusViewModel;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
+import com.example.rabinovich.schoolbus.Database.TripStudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     StudentViewModel studentViewModel;
     TripViewModel tripViewModel;
     BusViewModel busViewModel;
+    TripStudentViewModel tripStudentViewModel;
 
 
     private User current_user;
@@ -56,18 +58,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         loginPreferences = getSharedPreferences(getString(R.string.shared_preferences_file), MODE_PRIVATE);
         email = loginPreferences.getString("userEmail", null);
         password = loginPreferences.getString("userPassword", null);
         firstName = loginPreferences.getString("userFirstName", null);
         lastName = loginPreferences.getString("userLastName", null);
-
+   
         id = loginPreferences.getInt("userId", -1);
         isAdmin = loginPreferences.getBoolean("userIsAdmin", false);
 
@@ -76,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         tripViewModel = ViewModelProviders.of(this).get(TripViewModel.class);
         busViewModel = ViewModelProviders.of(this).get(BusViewModel.class);
+        tripStudentViewModel = ViewModelProviders.of(this).get(TripStudentViewModel.class);
         if(id == -1) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, 48);
@@ -101,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void LoadUi() {
         String user_type = current_user.getUser_type();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().clear();
         if(user_type.equals(getString(R.string.user_type_admin))){
             navigationView.inflateMenu(R.menu.drawer_view_admin);
         }else if(user_type.equals(getString(R.string.user_type_driver))){
@@ -174,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         int id = menuItem.getItemId();
                         // close drawer when item is tapped
                         if(id==R.id.nav_trips){
-                            TripFragment tripFragment = new TripFragment(tripViewModel, userViewModel, busViewModel, current_user);
+                            TripFragment tripFragment = new TripFragment(tripViewModel, userViewModel, busViewModel, studentViewModel, tripStudentViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, tripFragment);
