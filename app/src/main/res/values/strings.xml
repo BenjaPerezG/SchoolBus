@@ -63,6 +63,10 @@
     <string name="roll">Roll</string>
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
+    <string name="street">Calle:</string>
+    <string name="comuna">Comuna:</string>
+    <string name="numeration">Numeracion:</string>
+    <string name="department">Departamento:</string>
 
 
     <!-- Student related strings -->
@@ -74,5 +78,9 @@
     <string name="student_classroom">Curso</string>
     <string name="student_rut">RUT</string>
     <string name="student_contact_phone">Telefono de contacto</string>
+    <string name="conductor">Conductor</string>
+    <string name="fecha">Fecha</string>
+    <string name="patente_del_bus">Patente del Bus</string>
+    <string name="textview">TextView</string>
 
 </resources>

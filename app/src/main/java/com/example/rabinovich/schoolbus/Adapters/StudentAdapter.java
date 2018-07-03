@@ -48,7 +48,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
 
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.user_list_element, parent, false);
+        convertView = inflater.inflate(R.layout.student_list_element, parent, false);
 
         viewHolder = new StudentAdapter.ViewHolder();
         viewHolder.idTextView = convertView.findViewById(R.id.student_id);

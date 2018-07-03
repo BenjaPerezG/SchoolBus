@@ -11,8 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Adapters.TripAdapter;
 import com.example.rabinovich.schoolbus.Database.Bus;
@@ -83,6 +85,25 @@ public class TripFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Trip> trips) {
                 listView = view.findViewById(R.id.trip_list_view);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_trip = (TextView) view.findViewById(R.id.id_view);
+                        Integer current_id = Integer.parseInt(id_trip.getText().toString());
+                        arguments.putInt("Id", current_id);
+                        tripShowFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        transaction.replace(R.id.container, tripShowFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
+
+                    }
+                });
                 TripAdapter adapter = new TripAdapter(trips, getContext(), users, buses);
                 listView.setAdapter(adapter);
             }
