@@ -48,7 +48,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
 
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.user_list_element, parent, false);
+        convertView = inflater.inflate(R.layout.student_list_element, parent, false);
 
         viewHolder = new StudentAdapter.ViewHolder();
         viewHolder.idTextView = convertView.findViewById(R.id.student_id);
@@ -77,11 +77,10 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.lastNameTextView.setText(student.getLastName());
         viewHolder.guardianTextView.setText("Apoderado: "+Integer.toString(student.getGuardian_id()));
         viewHolder.classRoomTextView.setText("Sala: "+student.getClassroom());
-        viewHolder.stopTextView.setText("Parada: "+student.getStopId());
+        viewHolder.stopTextView.setText("Parada: "+student.getStop_id());
 
 
         // Return the completed view to render on screen
-
 
         return convertView;
     }

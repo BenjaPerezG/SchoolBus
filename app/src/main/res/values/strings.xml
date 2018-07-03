@@ -62,4 +62,14 @@
     <string name="department">Departamento:</string>
 
 
+    <!-- Student related strings -->
+    <string name="student_name">Nombre</string>
+    <string name="student_last_name">Apellido</string>
+    <string name="student_guardian">Apoderado</string>
+    <string name="student_address">Direccion</string>
+    <string name="student_age">Edad</string>
+    <string name="student_classroom">Curso</string>
+    <string name="student_rut">RUT</string>
+    <string name="student_contact_phone">Telefono de contacto</string>
+
 </resources>
