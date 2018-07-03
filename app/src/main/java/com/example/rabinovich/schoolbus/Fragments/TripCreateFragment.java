@@ -49,6 +49,7 @@ public class TripCreateFragment extends Fragment {
     private Spinner driverSpinner;
     private Spinner busSpinner;
     private CalendarView datePicker;
+    private String date;
 
     public TripCreateFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel) {
         this.tripViewModel = tripViewModel;
@@ -71,6 +72,14 @@ public class TripCreateFragment extends Fragment {
         driverSpinner = (Spinner) getView().findViewById(R.id.driver_spinner);
         busSpinner = (Spinner) getView().findViewById(R.id.bus_spinner);
         datePicker = (CalendarView) getView().findViewById(R.id.trip_date_picker);
+        date = "01-01-1900";
+        datePicker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
+            }
+        });
+
         
         userViewModel.getUsersByUserType("driver").observe(getActivity(), new Observer<List<User>>() {
             @Override
@@ -112,8 +121,6 @@ public class TripCreateFragment extends Fragment {
         Trip trip = new Trip();
         trip.setDriverId(users.get((int)driverSpinner.getSelectedItemId()).getId());
         trip.setBusId(buses.get((int)busSpinner.getSelectedItemId()).getId());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-        String date = sdf.format(new Date(datePicker.getDate()));
         trip.setDate(date);
         tripViewModel.insert(trip);
         getActivity().getSupportFragmentManager().popBackStack();

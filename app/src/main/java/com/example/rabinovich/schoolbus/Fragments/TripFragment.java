@@ -19,7 +19,9 @@ import android.widget.TextView;
 import com.example.rabinovich.schoolbus.Adapters.TripAdapter;
 import com.example.rabinovich.schoolbus.Database.Bus;
 import com.example.rabinovich.schoolbus.Database.BusViewModel;
+import com.example.rabinovich.schoolbus.Database.StudentViewModel;
 import com.example.rabinovich.schoolbus.Database.Trip;
+import com.example.rabinovich.schoolbus.Database.TripStudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -36,15 +38,19 @@ public class TripFragment extends Fragment {
     TripViewModel tripViewModel;
     UserViewModel userViewModel;
     BusViewModel busViewModel;
+    TripStudentViewModel tripStudentViewModel;
+    StudentViewModel studentViewModel;
     List<User> users;
     List<Bus> buses;
 
     private ListView listView;
 
-    public TripFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel) {
+    public TripFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel, StudentViewModel studentViewModel, TripStudentViewModel tripStudentViewModel) {
         this.tripViewModel = tripViewModel;
         this.busViewModel = busViewModel;
         this.userViewModel = userViewModel;
+        this.studentViewModel = studentViewModel;
+        this.tripStudentViewModel = tripStudentViewModel;
 
     }
 
@@ -88,7 +94,7 @@ public class TripFragment extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel);
+                        TripShowFragment tripShowFragment = new TripShowFragment(tripViewModel, userViewModel, busViewModel, studentViewModel, tripStudentViewModel);
                         Bundle arguments = new Bundle();
                         TextView id_trip = (TextView) view.findViewById(R.id.id_view);
                         Integer current_id = Integer.parseInt(id_trip.getText().toString());
