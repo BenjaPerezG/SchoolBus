@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
+import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.R;
 
 /**
