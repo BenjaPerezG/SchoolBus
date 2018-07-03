@@ -50,12 +50,23 @@
     <string name="create_stop_button_text">Añadir</string>
     <string name="appartment_details">Departamento (dejar vacio si es casa)</string>
     <string name="add_trip">Añadir Viaje</string>
+    <string name="add_bus">Añadir Bus</string>
+    <string name="create_bus_button_text">Añadir</string>
+    <string name="plate_edit_text">Patente del Vehiculo</string>
+    <string name="driverLabel">Conductor</string>
+    <string name="busLabel">Bus</string>
+    <string name="create_trip_button_text">Crear Nuevo Viaje</string>
+    <string name="dateLabel">Fecha</string>
     <string name="id">ID</string>
     <string name="nombre">Nombre</string>
     <string name="apellido">Apellido</string>
     <string name="roll">Roll</string>
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
+    <string name="street">Calle:</string>
+    <string name="comuna">Comuna:</string>
+    <string name="numeration">Numeracion:</string>
+    <string name="department">Departamento:</string>
 
 
     <!-- Student related strings -->
@@ -67,5 +78,9 @@
     <string name="student_classroom">Curso</string>
     <string name="student_rut">RUT</string>
     <string name="student_contact_phone">Telefono de contacto</string>
+    <string name="conductor">Conductor</string>
+    <string name="fecha">Fecha</string>
+    <string name="patente_del_bus">Patente del Bus</string>
+    <string name="textview">TextView</string>
 
 </resources>

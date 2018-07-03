@@ -11,8 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.rabinovich.schoolbus.Adapters.StopAdapter;
 import com.example.rabinovich.schoolbus.Database.Stop;
@@ -61,6 +63,25 @@ public class StopFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Stop> stops) {
                 listView = view.findViewById(R.id.stop_list_view);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ShowStopFragment showStopFragment = new ShowStopFragment(stopViewModel);
+                        Bundle arguments = new Bundle();
+                        TextView id_stop = (TextView) view.findViewById(R.id.stop_id);
+                        String current_id = id_stop.getText().toString();
+                        arguments.putString("Id", current_id);
+                        showStopFragment.setArguments(arguments);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        transaction.replace(R.id.container, showStopFragment);
+                        transaction.addToBackStack(null);
+
+                        transaction.commit();
+
+
+                    }
+                });
                 StopAdapter adapter = new StopAdapter(stops, getContext());
                 listView.setAdapter(adapter);
             }

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ShowStopFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/ID"
+        android:text="@string/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="71dp" />
+
+    <TextView
+        android:id="@+id/street_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/street" />
+
+    <TextView
+        android:id="@+id/comuna_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/street_show"
+        android:layout_marginTop="147dp"
+        android:text="@string/comuna" />
+
+    <TextView
+        android:id="@+id/number_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/street_show"
+        android:layout_marginTop="188dp"
+        android:text="@string/numeration" />
+
+    <TextView
+        android:id="@+id/department_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/street_show"
+        android:layout_marginTop="233dp"
+        android:text="@string/department" />
+
+    <Button
+        android:id="@+id/edit_stop"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="217dp"
+        android:text="@string/editar" />
+
+    <Button
+        android:id="@+id/delete_stop"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="126dp"
+        android:layout_toEndOf="@+id/ID"
+        android:text="@string/borrar" />
+
+    <TextView
+        android:id="@+id/id_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/ID"
+        android:layout_marginStart="122dp"
+        android:text="@string/id" />
+
+    <EditText
+        android:id="@+id/street_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ID"
+        android:layout_marginEnd="54dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/street" />
+
+    <EditText
+        android:id="@+id/comuna_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/street_edit"
+        android:layout_below="@+id/street_show"
+        android:ems="10"
+        android:inputType="text"
+        android:text="@string/comuna" />
+
+    <EditText
+        android:id="@+id/numeration_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/number_show"
+        android:layout_alignStart="@+id/street_edit"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/numeration" />
+
+    <EditText
+        android:id="@+id/department_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/department_show"
+        android:layout_alignStart="@+id/street_edit"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/department" />
+</RelativeLayout>
