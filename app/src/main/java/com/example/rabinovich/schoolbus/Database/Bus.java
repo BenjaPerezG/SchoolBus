@@ -31,7 +31,7 @@ public class Bus {
     public String getPlate() {
         return plate;
     }
-    public void setPlate(String driver_id) {
+    public void setPlate(String plate) {
         this.plate = plate;
     }
 }

@@ -29,7 +29,6 @@ public class StopCreateFragment extends Fragment {
     private AutoCompleteTextView streetEditText;
     private AutoCompleteTextView numberEditText;
     private AutoCompleteTextView appartmentEditText;
-    private EditText passwordEditText;
     public StopCreateFragment(StopViewModel stopViewModel) {
         this.stopViewModel = stopViewModel;
     }

@@ -169,14 +169,14 @@ public class MainActivity extends AppCompatActivity {
                         int id = menuItem.getItemId();
                         // close drawer when item is tapped
                         if(id==R.id.nav_trips){
-                            TripFragment tripFragment = new TripFragment(tripViewModel);
+                            TripFragment tripFragment = new TripFragment(tripViewModel, userViewModel, busViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, tripFragment);
                             transaction.addToBackStack(null);
 
                             transaction.commit();
-                            return true;
+
                         }
                         if(id==R.id.nav_drivers){
                             AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel);
@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                             transaction.addToBackStack(null);
 
                             transaction.commit();
+
                         }
                         if(id==R.id.nav_buses){
                             BusFragment busFragment = new BusFragment(busViewModel);
@@ -195,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
                             transaction.addToBackStack(null);
 
                             transaction.commit();
-                            return true;
 
                         }
                         if(id==R.id.nav_stops){
@@ -204,9 +204,9 @@ public class MainActivity extends AppCompatActivity {
 
                             transaction.replace(R.id.container, stopFragment);
                             transaction.addToBackStack(null);
+                            mDrawerLayout.closeDrawers();
 
                             transaction.commit();
-                            return true;
                         }
                         if(id==R.id.nav_students){
                             AdminStudentFragment adminStudentFragment = new AdminStudentFragment(studentViewModel, userViewModel, stopViewModel);
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                             transaction.addToBackStack(null);
 
                             transaction.commit();
-                            return true;
+
                         }
                         if(id==R.id.nav_log_out){
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

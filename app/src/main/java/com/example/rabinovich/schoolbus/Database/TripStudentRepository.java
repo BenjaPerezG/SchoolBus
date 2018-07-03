@@ -20,9 +20,9 @@ public class TripStudentRepository {
     LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id){return mTripStudentDao.getStudentsIdsByTripId(trip_id);}
     LiveData<List<Integer>> getTripsIdsByStudentId(int student_id){return mTripStudentDao.getTripsIdsByStudentId(student_id);}
 
-    public void insert(TripStudent tripStudent){mTripStudentDao.insert(tripStudent);}
-    public void update(TripStudent tripStudent){mTripStudentDao.update(tripStudent);}
-    public void delete(TripStudent tripStudent){mTripStudentDao.delete(tripStudent);}
+    public void insert(TripStudent tripStudent){new insertAsyncTask(mTripStudentDao).execute(tripStudent);}
+    public void update(TripStudent tripStudent){new updateAsyncTask(mTripStudentDao).execute(tripStudent);}
+    public void delete(TripStudent tripStudent){new deleteAsyncTask(mTripStudentDao).execute(tripStudent);}
 
     private static class insertAsyncTask extends AsyncTask<TripStudent, Void, Void> {
 

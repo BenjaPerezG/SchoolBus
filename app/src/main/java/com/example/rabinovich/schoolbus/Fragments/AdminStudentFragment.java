@@ -68,6 +68,7 @@ public class AdminStudentFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 listView = view.findViewById(R.id.student_list_view);
+
                 StudentAdapter adapter = new StudentAdapter(students, getContext());
                 listView.setAdapter(adapter);
             }
