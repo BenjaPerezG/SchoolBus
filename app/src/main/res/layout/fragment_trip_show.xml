@@ -58,6 +58,12 @@
             android:ems="10" />
 
         <Button
+            android:id="@+id/buttonCall"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Llamar conductor"/>
+        <Button
             android:id="@+id/add_students_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

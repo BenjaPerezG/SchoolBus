@@ -1,12 +1,17 @@
 package com.example.rabinovich.schoolbus.Fragments;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -18,6 +23,7 @@ import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.rabinovich.schoolbus.Activities.MainActivity;
 import com.example.rabinovich.schoolbus.Database.Bus;
 import com.example.rabinovich.schoolbus.Database.BusViewModel;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
@@ -27,6 +33,7 @@ import com.example.rabinovich.schoolbus.Database.TripStudentViewModel;
 import com.example.rabinovich.schoolbus.Database.TripViewModel;
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
+import com.example.rabinovich.schoolbus.MainApplication;
 import com.example.rabinovich.schoolbus.R;
 
 import java.text.ParseException;
@@ -45,6 +52,7 @@ CalendarView date_trip;
 Spinner driverSpinner;
 Spinner busSpinner;
 String date;
+Trip mTrip;
 private List<User> users;
 private List<Bus> buses;
 private BusViewModel busViewModel;
@@ -90,6 +98,7 @@ private TripStudentViewModel tripStudentViewModel;
             public void onChanged(@Nullable Trip otrip) {
                 //declaras en este espacio todo lo que hagas utilizando el trip obtenido
                 trip_id.setText(current_id);
+                mTrip = otrip;
                 final Trip trip = otrip;
                 final Context context = getContext();
 
@@ -133,7 +142,13 @@ private TripStudentViewModel tripStudentViewModel;
                 date_trip.setDate(l_date);
 
 
-
+                Button callButton = (Button) getView().findViewById(R.id.buttonCall);
+                callButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view){
+                        CallDriver();
+                    }
+                });
 
                 Button mAddStundentsButton = (Button) getView().findViewById(R.id.add_students_button);
                 mAddStundentsButton.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +174,6 @@ private TripStudentViewModel tripStudentViewModel;
                 });
             }
         });
-
 
     }
 
@@ -215,6 +229,26 @@ private TripStudentViewModel tripStudentViewModel;
 
     }
 
+    private void CallDriver(){
+        int phone = -1;
+        for(User user: users){
+            if(user.getId() == mTrip.getDriverId()){
+                phone = user.getPhone_number();
+            }
+        }
+        if(phone != -1){
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:999651846"));
 
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
+            PackageManager.PERMISSION_GRANTED){
+                if(!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CALL_PHONE)){
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 1);
+                }
+                return;
+            }
+            startActivity(callIntent);
+        }
+    }
 
 }
