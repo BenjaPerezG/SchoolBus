@@ -352,9 +352,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int IS_PRIMARY = 1;
     }
 
-    @Override
-    public void onBackPressed() {
 
-    }
 }
 

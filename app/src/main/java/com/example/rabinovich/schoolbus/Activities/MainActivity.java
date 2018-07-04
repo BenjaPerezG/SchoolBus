@@ -31,6 +31,7 @@ import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.BusFragment;
 import com.example.rabinovich.schoolbus.Fragments.GuardianStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
+import com.example.rabinovich.schoolbus.Fragments.TripDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.TripFragment;
 import com.example.rabinovich.schoolbus.R;
 
@@ -189,6 +190,30 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
 
                         }
+
+                        if(id==R.id.nav_driver_trips){
+                            TripDriverFragment tripDriverFragment = new TripDriverFragment(tripViewModel, userViewModel, busViewModel, studentViewModel, tripStudentViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, tripDriverFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
+
+                        }
+
+                        if(id==R.id.nav_drivers){
+                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, adminDriverFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
+
+                        }
+
+
                         if(id==R.id.nav_buses){
                             BusFragment busFragment = new BusFragment(busViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
