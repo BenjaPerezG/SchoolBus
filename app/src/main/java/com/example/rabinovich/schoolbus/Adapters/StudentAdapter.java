@@ -1,5 +1,6 @@
 package com.example.rabinovich.schoolbus.Adapters;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class StudentAdapter extends ArrayAdapter<Student> {
     private List<Student> dataSet;
+    private List<User> dataGuardians;
     Context mContext;
     private int lastPosition = -1;
     SharedPreferences loginPreferences;
@@ -35,15 +37,18 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         TextView stopTextView;
     }
 
-    public StudentAdapter(List<Student> data, Context context, UserViewModel userViewModel) {
+    public StudentAdapter(List<Student> data, Context context, UserViewModel userViewModel, List<User> dataGuardians) {
         super(context, R.layout.fragment_admin_users, data);
         this.userViewModel=userViewModel;
         this.dataSet = data;
+        this.dataGuardians = dataGuardians;
         this.mContext=context;
-        loginPreferences = getContext().getSharedPreferences("shared_preferences_file", Context.MODE_PRIVATE);
+        loginPreferences = getContext().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
         id = loginPreferences.getInt("userId", 0);
 
     }
+
+
 
 
 
@@ -72,7 +77,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.guardianTextView = convertView.findViewById(R.id.student_guardian);
         viewHolder.ageTextView = convertView.findViewById(R.id.student_age);
         viewHolder.classRoomTextView=convertView.findViewById(R.id.student_classroom);
-        viewHolder.stopTextView=convertView.findViewById(R.id.student_stop);
+
 
 
         /*if (convertView == null) {
@@ -86,13 +91,17 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             viewHolder = (ViewHolder) convertView.getTag();
         }*/
         lastPosition = position;
+        for(User guard:dataGuardians ){
+            if(student.getGuardian_id()==guard.getId()){
+                viewHolder.guardianTextView.setText("Apoderado: "+guard.getFirst_name()+" "+guard.getLast_name());
+            }
+        }
 
         viewHolder.idTextView.setText(Integer.toString(student.getId()));
         viewHolder.firstNameTextView.setText(student.getFirstName());
         viewHolder.lastNameTextView.setText(student.getLastName());
-        viewHolder.guardianTextView.setText("Apoderado: "+Integer.toString(student.getGuardian_id()));
         viewHolder.classRoomTextView.setText("Sala: "+student.getClassroom());
-        viewHolder.stopTextView.setText("Parada: "+student.getStop_id());
+
 
 
         // Return the completed view to render on screen
