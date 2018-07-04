@@ -29,6 +29,7 @@ import com.example.rabinovich.schoolbus.Fragments.AdminDriverFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.AdminUsersFragment;
 import com.example.rabinovich.schoolbus.Fragments.BusFragment;
+import com.example.rabinovich.schoolbus.Fragments.GuardianStudentFragment;
 import com.example.rabinovich.schoolbus.Fragments.StopFragment;
 import com.example.rabinovich.schoolbus.Fragments.TripFragment;
 import com.example.rabinovich.schoolbus.R;
@@ -228,6 +229,16 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
                             return true;
                         }
+                        if(id==R.id.nav_my_students){
+                            GuardianStudentFragment guardianStudentFragment = new GuardianStudentFragment(studentViewModel, userViewModel, stopViewModel);
+                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+                            transaction.replace(R.id.container, guardianStudentFragment);
+                            transaction.addToBackStack(null);
+
+                            transaction.commit();
+                            return true;
+                        }
                         if(id==R.id.nav_users){
                             AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -258,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             SharedPreferences.Editor prefEditor = loginPreferences.edit();
+            Integer id = data.getExtras().getInt("id");
             prefEditor.putInt("userId", data.getExtras().getInt("id"));
             prefEditor.putString("userFirstName", data.getExtras().getString("first_name"));
             prefEditor.putString("userLastName", data.getExtras().getString("last_name"));
