@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -73,20 +74,24 @@ public class AdminCreateUserFragment extends Fragment {
 
     private void Register(){
 
-        User user = new User();
-        user.setFirst_name(firstNameEditText.getText().toString());
-        user.setLast_name(lastNameEditText.getText().toString());
-        user.setEmail(emailEditText.getText().toString());
-        user.setPhone_number(Integer.parseInt(phoneText.getText().toString()));
-        user.setPassword(passwordEditText.getText().toString());
-        if (rollSpinner.getSelectedItem().toString().equals("Administrador")){
-            user.setUser_type(getString(R.string.user_type_admin));
-        }else if(rollSpinner.getSelectedItem().toString().equals("Conductor")){
-            user.setUser_type(getString(R.string.user_type_driver));
-        }else if(rollSpinner.getSelectedItem().toString().equals("Apoderado")){
-            user.setUser_type(getString(R.string.user_type_guardian));
+        if (firstNameEditText.getText().toString().equals("") || lastNameEditText.getText().toString().equals("") || emailEditText.getText().toString().equals("") || phoneText.getText().toString().equals("") || passwordEditText. getText().toString().equals("")){
+            Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
+        }else {
+            User user = new User();
+            user.setFirst_name(firstNameEditText.getText().toString());
+            user.setLast_name(lastNameEditText.getText().toString());
+            user.setEmail(emailEditText.getText().toString());
+            user.setPhone_number(Integer.parseInt(phoneText.getText().toString()));
+            user.setPassword(passwordEditText.getText().toString());
+            if (rollSpinner.getSelectedItem().toString().equals("Administrador")) {
+                user.setUser_type(getString(R.string.user_type_admin));
+            } else if (rollSpinner.getSelectedItem().toString().equals("Conductor")) {
+                user.setUser_type(getString(R.string.user_type_driver));
+            } else if (rollSpinner.getSelectedItem().toString().equals("Apoderado")) {
+                user.setUser_type(getString(R.string.user_type_guardian));
+            }
+            userViewModel.insert(user);
+            getActivity().getSupportFragmentManager().popBackStack();
         }
-        userViewModel.insert(user);
-        getActivity().getSupportFragmentManager().popBackStack();
     }
 }

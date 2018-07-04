@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.Stop;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
@@ -28,7 +29,7 @@ public class StopCreateFragment extends Fragment {
     private AutoCompleteTextView regionEditText;
     private AutoCompleteTextView streetEditText;
     private AutoCompleteTextView numberEditText;
-    private AutoCompleteTextView appartmentEditText;
+    private AutoCompleteTextView apartmentEditText;
     public StopCreateFragment(StopViewModel stopViewModel) {
         this.stopViewModel = stopViewModel;
     }
@@ -47,7 +48,7 @@ public class StopCreateFragment extends Fragment {
         regionEditText = (AutoCompleteTextView) getView().findViewById(R.id.region_edit);
         streetEditText = (AutoCompleteTextView) getView().findViewById(R.id.street_edit);
         numberEditText = (AutoCompleteTextView) getView().findViewById(R.id.numeration_edit);
-        appartmentEditText = (AutoCompleteTextView) getView().findViewById(R.id.apartement_details);
+        apartmentEditText = (AutoCompleteTextView) getView().findViewById(R.id.apartement_details);
         Button mRegisterButton = (Button) getView().findViewById(R.id.create_stop_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +59,17 @@ public class StopCreateFragment extends Fragment {
     }
 
     private void CreateNewStop(){
-        Stop stop = new Stop();
-        stop.setComuna(regionEditText.getText().toString());
-        stop.setStreet(streetEditText.getText().toString());
-        stop.setNumeration(Integer.parseInt(numberEditText.getText().toString()));
-        stop.setHouseApartment(appartmentEditText.getText().toString());
-        stopViewModel.insert(stop);
-        getActivity().getSupportFragmentManager().popBackStack();
 
+        if(regionEditText.getText().toString().equals("") || streetEditText.getText().toString().equals("") || numberEditText.getText().toString().equals("")){
+            Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
+        }else {
+            Stop stop = new Stop();
+            stop.setComuna(regionEditText.getText().toString());
+            stop.setStreet(streetEditText.getText().toString());
+            stop.setNumeration(Integer.parseInt(numberEditText.getText().toString()));
+            stop.setHouseApartment(apartmentEditText.getText().toString());
+            stopViewModel.insert(stop);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
     }
 }
