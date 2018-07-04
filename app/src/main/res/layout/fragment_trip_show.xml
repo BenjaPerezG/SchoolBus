@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.TripCreateFragment">
-
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -81,4 +84,5 @@
             android:layout_height="wrap_content"
             android:text="@string/borrar" />
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>

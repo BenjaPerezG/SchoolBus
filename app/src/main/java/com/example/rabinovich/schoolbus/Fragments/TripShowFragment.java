@@ -39,6 +39,8 @@ import com.example.rabinovich.schoolbus.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,25 +85,24 @@ private TripStudentViewModel tripStudentViewModel;
         driverSpinner = (Spinner) getView().findViewById(R.id.driver_list_edit);
         busSpinner = (Spinner) getView().findViewById(R.id.bus_list_edit);
         date_trip = (CalendarView) getView().findViewById(R.id.date_trip_edit);
-        date = "01-01-1900";
-        date_trip.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
-            }
-        });
+
 
         Integer show_id = getArguments().getInt("Id");
         final String current_id = String.valueOf(show_id);
         tripViewModel.getTripById(show_id).observe(this, new Observer<Trip>() {
             @Override
             public void onChanged(@Nullable Trip otrip) {
-                //declaras en este espacio todo lo que hagas utilizando el trip obtenido
                 trip_id.setText(current_id);
                 mTrip = otrip;
                 final Trip trip = otrip;
                 final Context context = getContext();
-
+                date = trip.getDate();
+                date_trip.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                    @Override
+                    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                        date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month+1) + "-" + String.valueOf(year);
+                    }
+                });
 
                 userViewModel.getUsersByUserType("driver").observe(getActivity(), new Observer<List<User>>() {
                     @Override
@@ -135,7 +136,6 @@ private TripStudentViewModel tripStudentViewModel;
                 long l_date = 0;
                 try {
                     l_date = sdf.parse(str_date).getTime();
-
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
