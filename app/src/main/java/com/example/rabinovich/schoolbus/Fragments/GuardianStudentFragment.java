@@ -1,10 +1,12 @@
 package com.example.rabinovich.schoolbus.Fragments;
 
+
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,7 +32,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 @SuppressLint("ValidFragment")
-public class AdminStudentFragment extends Fragment {
+public class GuardianStudentFragment extends Fragment {
     SharedPreferences loginPreferences;
     StudentViewModel studentViewModel;
     UserViewModel userViewModel;
@@ -42,7 +44,7 @@ public class AdminStudentFragment extends Fragment {
 
 
     @SuppressLint("ValidFragment")
-    public AdminStudentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
+    public GuardianStudentFragment(StudentViewModel studentViewModel, UserViewModel userViewModel, StopViewModel stopViewModel) {
         // Required empty public constructor
         this.studentViewModel = studentViewModel;
         this.userViewModel = userViewModel;
@@ -61,7 +63,7 @@ public class AdminStudentFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        loginPreferences =  getActivity().getSharedPreferences("shared_preferences_file", Context.MODE_PRIVATE);
+        loginPreferences = this.getActivity().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
         id = loginPreferences.getInt("userId",0);
 
 
@@ -76,22 +78,22 @@ public class AdminStudentFragment extends Fragment {
         });
 
 
-        studentViewModel.getAllStudents().observe(getActivity(), new Observer<List<Student>>() {
+        studentViewModel.getStudentsByGuardianId(id).observe(getActivity(), new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 listView = view.findViewById(R.id.student_list_view);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        ShowStudentFragment showStudentFragment = new ShowStudentFragment(studentViewModel, userViewModel,stopViewModel);
+                        GuardianShowStudentFragment guardianShowStudentFragment = new GuardianShowStudentFragment(studentViewModel, userViewModel,stopViewModel);
                         Bundle arguments = new Bundle();
                         TextView id_student = (TextView) view.findViewById(R.id.student_id);
                         Integer current_id = Integer.parseInt(id_student.getText().toString());
                         arguments.putInt("Id", current_id);
-                        showStudentFragment.setArguments(arguments);
+                        guardianShowStudentFragment.setArguments(arguments);
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                        transaction.replace(R.id.container, showStudentFragment);
+                        transaction.replace(R.id.container, guardianShowStudentFragment);
                         transaction.addToBackStack(null);
 
                         transaction.commit();
@@ -115,3 +117,4 @@ public class AdminStudentFragment extends Fragment {
         transaction.commit();
     }
 }
+

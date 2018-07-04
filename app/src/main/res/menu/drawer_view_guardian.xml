@@ -11,9 +11,9 @@
                 android:title="@string/nav_trip" />
 
             <item
-                android:id="@+id/nav_students"
+                android:id="@+id/nav_my_students"
                 android:icon="@drawable/ic_student_icon"
-                android:title="Alumno"/>
+                android:title="Mis Alumnos"/>
 
             <item
                 android:id="@+id/nav_stops"

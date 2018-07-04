@@ -1,6 +1,9 @@
 package com.example.rabinovich.schoolbus.Adapters;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ public class StudentAdapter extends ArrayAdapter<Student> {
     private List<Student> dataSet;
     Context mContext;
     private int lastPosition = -1;
+    SharedPreferences loginPreferences;
+    Integer id;
+    UserViewModel userViewModel;
 
     private static class ViewHolder {
         TextView idTextView;
@@ -29,17 +35,26 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         TextView stopTextView;
     }
 
-    public StudentAdapter(List<Student> data, Context context) {
+    public StudentAdapter(List<Student> data, Context context, UserViewModel userViewModel) {
         super(context, R.layout.fragment_admin_users, data);
+        this.userViewModel=userViewModel;
         this.dataSet = data;
         this.mContext=context;
+        loginPreferences = getContext().getSharedPreferences("shared_preferences_file", Context.MODE_PRIVATE);
+        id = loginPreferences.getInt("userId", 0);
 
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
+
         // Get the data item for this position
         Student student = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         StudentAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
 

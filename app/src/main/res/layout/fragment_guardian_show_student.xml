@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.GuardianShowStudentFragment">
+
+    <TextView
+        android:id="@+id/age_student_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
+        android:text="@string/edad" />
+
+    <TextView
+        android:id="@+id/student_name_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginTop="126dp"
+        android:text="@string/nombre" />
+
+    <TextView
+        android:id="@+id/student_lastName_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/id_student_show"
+        android:layout_marginTop="171dp"
+        android:text="@string/apellido" />
+
+
+    <TextView
+        android:id="@+id/class_student_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/class_student_edit"
+        android:text="@string/salas" />
+
+
+    <TextView
+        android:id="@+id/age_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/age_student_show"
+        android:layout_marginEnd="55dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/edad" />
+
+    <TextView
+        android:id="@+id/name_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_alignTop="@+id/student_name_show"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/nombre" />
+
+    <TextView
+        android:id="@+id/lastName_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_alignTop="@+id/student_lastName_show"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/last_name" />
+
+    <TextView
+        android:id="@+id/class_student_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/age_student_edit"
+        android:layout_marginTop="224dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/salas" />
+
+</RelativeLayout>
