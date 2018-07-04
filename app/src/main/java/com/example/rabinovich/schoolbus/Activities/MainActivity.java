@@ -202,16 +202,6 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                        if(id==R.id.nav_drivers){
-                            AdminDriverFragment adminDriverFragment = new AdminDriverFragment(userViewModel);
-                            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                            transaction.replace(R.id.container, adminDriverFragment);
-                            transaction.addToBackStack(null);
-
-                            transaction.commit();
-
-                        }
 
 
                         if(id==R.id.nav_buses){

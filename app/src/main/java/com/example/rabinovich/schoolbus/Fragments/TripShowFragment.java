@@ -3,9 +3,11 @@ package com.example.rabinovich.schoolbus.Fragments;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +64,7 @@ private BusViewModel busViewModel;
 private UserViewModel userViewModel;
 private StudentViewModel studentViewModel;
 private TripStudentViewModel tripStudentViewModel;
+private FragmentActivity activity;
 
     public TripShowFragment(TripViewModel tripViewModel, UserViewModel userViewModel, BusViewModel busViewModel,StudentViewModel studentViewModel, TripStudentViewModel tripStudentViewModel) {
         this.tripViewModel=tripViewModel;
@@ -75,6 +79,7 @@ private TripStudentViewModel tripStudentViewModel;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        activity = getActivity();
         return inflater.inflate(R.layout.fragment_trip_show, container, false);
     }
 
@@ -172,6 +177,17 @@ private TripStudentViewModel tripStudentViewModel;
                         Delete(trip);
                     }
                 });
+
+                SharedPreferences sp = activity.getSharedPreferences(getString(R.string.shared_preferences_file), activity.MODE_PRIVATE);
+                boolean isAdmin = sp.getBoolean("userIsAdmin", false);
+                if(!isAdmin){
+                    driverSpinner.setEnabled(false);
+                    busSpinner.setEnabled(false);
+                    mAddStundentsButton.setVisibility(View.GONE);
+                    callButton.setVisibility(View.GONE);
+                    mEditButton.setVisibility(View.GONE);
+                    mDeleteButton.setVisibility(View.GONE);
+                }
             }
         });
 

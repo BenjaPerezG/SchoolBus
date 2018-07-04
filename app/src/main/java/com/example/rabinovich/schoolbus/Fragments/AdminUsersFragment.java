@@ -36,6 +36,7 @@ public class AdminUsersFragment extends Fragment {
     SharedPreferences loginPreferences;
     String email;
     String password;
+    FragmentActivity activity;
 
     @SuppressLint("ValidFragment")
     public AdminUsersFragment(UserViewModel userViewModel) {
@@ -49,6 +50,7 @@ public class AdminUsersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        activity = getActivity();
         return inflater.inflate(R.layout.fragment_admin_users, container, false);
     }
 
@@ -67,7 +69,7 @@ public class AdminUsersFragment extends Fragment {
             }
         });
 
-        userViewModel.getUserByCredentials(email, password).observe(getActivity(), new Observer<User>() {
+        userViewModel.getUserByCredentials(email, password).observe(activity, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
                 if (!user.getUser_type().equals(getString(R.string.user_type_admin))){
@@ -76,7 +78,7 @@ public class AdminUsersFragment extends Fragment {
             }
         });
 
-        userViewModel.getAllUsers().observe(getActivity(), new Observer<List<User>>() {
+        userViewModel.getAllUsers().observe(activity, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 listView = view.findViewById(R.id.user_list_view);
@@ -89,7 +91,7 @@ public class AdminUsersFragment extends Fragment {
                         String current_id = id_user.getText().toString();
                         arguments.putString("Id", current_id);
                         showUserFragment.setArguments(arguments);
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
                         transaction.replace(R.id.container, showUserFragment);
                         transaction.addToBackStack(null);
@@ -107,7 +109,7 @@ public class AdminUsersFragment extends Fragment {
 
     public void OpenUserCreateFragment(){
         AdminCreateUserFragment adminCreateUserFragment = new AdminCreateUserFragment(userViewModel);
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.container, adminCreateUserFragment);
         transaction.addToBackStack(null);
