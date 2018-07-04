@@ -77,7 +77,11 @@ public class AdminCreateUserFragment extends Fragment {
 
     private void Register(){
 
-        if (firstNameEditText.getText().toString().equals("") || lastNameEditText.getText().toString().equals("") || emailEditText.getText().toString().equals("") || phoneText.getText().toString().equals("") || passwordEditText. getText().toString().equals("")){
+        if(!isConvertableToInt(phoneText.getText().toString())){
+            Toast.makeText(getContext(), "El numero de telefono tiene caracteres no numericos.", Toast.LENGTH_LONG).show();
+        }else if (firstNameEditText.getText().toString().equals("") || lastNameEditText.getText().toString().equals("") ||
+                emailEditText.getText().toString().equals("") || phoneText.getText().toString().equals("") ||
+                passwordEditText. getText().toString().equals("")){
             Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
         }else if(isEmailValid(emailEditText.getText().toString())){
             User user = new User();
@@ -106,5 +110,14 @@ public class AdminCreateUserFragment extends Fragment {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    private boolean isConvertableToInt(String value){
+        try{
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException ex){
+            return false;
+        }
     }
 }
