@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.Bus;
 import com.example.rabinovich.schoolbus.Database.BusViewModel;
@@ -52,10 +53,14 @@ public class BusCreateFragment extends Fragment {
     }
 
     private void CreateNewBus() {
-        Bus bus = new Bus();
-        bus.setPlate(plateEditText.getText().toString());
-        busViewModel.insert(bus);
-        getActivity().getSupportFragmentManager().popBackStack();
+        if(plateEditText.getText().toString().equals("")){
+            Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
+        }else {
 
+            Bus bus = new Bus();
+            bus.setPlate(plateEditText.getText().toString());
+            busViewModel.insert(bus);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
     }
 }

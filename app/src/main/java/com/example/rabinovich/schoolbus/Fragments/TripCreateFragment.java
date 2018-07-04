@@ -121,11 +121,16 @@ public class TripCreateFragment extends Fragment {
     }
 
     private void CreateNewTrip(){
-        Trip trip = new Trip();
-        trip.setDriverId(users.get((int)driverSpinner.getSelectedItemId()).getId());
-        trip.setBusId(buses.get((int)busSpinner.getSelectedItemId()).getId());
-        trip.setDate(date);
-        tripViewModel.insert(trip);
-        getActivity().getSupportFragmentManager().popBackStack();
+
+        if(driverSpinner != null && driverSpinner.getSelectedItem() != null && busSpinner != null && busSpinner.getSelectedItem() != null) {
+            Trip trip = new Trip();
+            trip.setDriverId(users.get((int) driverSpinner.getSelectedItemId()).getId());
+            trip.setBusId(buses.get((int) busSpinner.getSelectedItemId()).getId());
+            trip.setDate(date);
+            tripViewModel.insert(trip);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }else{
+            Toast.makeText(getContext(), "No hay conductores o buses creados, por favor verifique que existen ambos o cree nuevos.", Toast.LENGTH_LONG).show();
+        }
     }
 }

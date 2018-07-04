@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.Stop;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
@@ -118,17 +119,26 @@ public class CreateStudentFragment extends Fragment {
     }
 
     public void createNewStudent(List<User> users, List<Stop> stops){
-        Student student = new Student();
-        student.setFirstName(studentNameText.getText().toString());
-        student.setLastName(studentLastNameText.getText().toString());
-        student.setAge(Integer.parseInt(studentAgeText.getText().toString()));
-        student.setClassroom(studentClassroomText.getText().toString());
-        student.setRut(studentRutText.getText().toString());
-        student.setContact_phone(Integer.parseInt(studentContactPhoneText.getText().toString()));
-        student.setGuardian_id(guardians.get((int)studentGuardianSpinner.getSelectedItemId()).getId());
-        student.setStop_id(stopsList.get((int)studentStopSpinner.getSelectedItemId()).getId());
-        studentViewModel.insert(student);
-        getActivity().getSupportFragmentManager().popBackStack();
 
+
+        if(studentNameText.getText().toString().equals("") || studentLastNameText.getText().toString().equals("") ||
+                studentAgeText.getText().toString().equals("") || studentClassroomText.getText().toString().equals("") ||
+                studentRutText.getText().toString().equals("") || studentContactPhoneText.getText().toString().equals("")){
+            Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
+        }else if(studentGuardianSpinner != null && studentGuardianSpinner.getSelectedItem() != null && studentStopSpinner != null && studentStopSpinner.getSelectedItem() != null){
+            Student student = new Student();
+            student.setFirstName(studentNameText.getText().toString());
+            student.setLastName(studentLastNameText.getText().toString());
+            student.setAge(Integer.parseInt(studentAgeText.getText().toString()));
+            student.setClassroom(studentClassroomText.getText().toString());
+            student.setRut(studentRutText.getText().toString());
+            student.setContact_phone(Integer.parseInt(studentContactPhoneText.getText().toString()));
+            student.setGuardian_id(guardians.get((int) studentGuardianSpinner.getSelectedItemId()).getId());
+            student.setStop_id(stopsList.get((int) studentStopSpinner.getSelectedItemId()).getId());
+            studentViewModel.insert(student);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }else{
+            Toast.makeText(getContext(), "No hay apoderados o paradas disponibles, por favor cree ambas y verifique que sean validas.", Toast.LENGTH_LONG).show();
+        }
     }
 }

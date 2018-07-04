@@ -14,10 +14,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,13 +74,27 @@ public class RegistrationFragment extends Fragment {
 
     private void Register(){
 
-        User user = new User();
-        user.setFirst_name(firstNameEditText.getText().toString());
-        user.setLast_name(lastNameEditText.getText().toString());
-        user.setEmail(emailEditText.getText().toString());
-        user.setPassword(passwordEditText.getText().toString());
-        user.setUser_type(getString(R.string.user_type_admin));
-        userViewModel.insert(user);
-        getActivity().getSupportFragmentManager().popBackStack();
+        if(!isEmailValid(emailEditText.getText().toString())){
+            Toast.makeText(getContext(), "Formato de email invalido, por favor revise y escriba nuevamente.", Toast.LENGTH_LONG).show();
+        }else if(firstNameEditText.getText().toString().equals("") || lastNameEditText.getText().toString().equals("") || passwordEditText.getText().toString().equals("")) {
+            Toast.makeText(getContext(), "Campos vacios, por favor llene todos los campos", Toast.LENGTH_LONG).show();
+        }else{
+            User user = new User();
+            user.setFirst_name(firstNameEditText.getText().toString());
+            user.setLast_name(lastNameEditText.getText().toString());
+            user.setEmail(emailEditText.getText().toString());
+            user.setPassword(passwordEditText.getText().toString());
+            user.setUser_type(getString(R.string.user_type_admin));
+            userViewModel.insert(user);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

@@ -71,7 +71,7 @@ public class GuardianStudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_student, container, false);
+        return inflater.inflate(R.layout.fragment_guardian_student, container, false);
     }
 
     @Override
@@ -105,20 +105,10 @@ public class GuardianStudentFragment extends Fragment {
         id = loginPreferences.getInt("userId",0);
 
 
-
-
-        Button mCreateStudentButton = (Button) getView().findViewById(R.id.add_student_button);
-        mCreateStudentButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                OpenCreateStudentFragment();
-            }
-        });
-
-
         studentViewModel.getStudentsByGuardianId(id).observe(getActivity(), new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
+                final List<Student> studentList = students;
                 listView = view.findViewById(R.id.student_list_view);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -137,8 +127,17 @@ public class GuardianStudentFragment extends Fragment {
                         transaction.commit();
                     }
                 });
-                StudentAdapter adapter = new StudentAdapter(students, getContext(), userViewModel);
-                listView.setAdapter(adapter);
+                userViewModel.getUsersByUserType("guardian").observe(getActivity(), new Observer<List<User>>() {
+                    @Override
+                    public void onChanged(@Nullable List<User> users) {
+                        final List<User> userList = users;
+
+                        StudentAdapter adapter = new StudentAdapter(studentList, getContext(), userViewModel, userList);
+                        listView.setAdapter(adapter);
+
+                    }
+
+                });
             }
         });
     }
