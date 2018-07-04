@@ -15,6 +15,7 @@ public class TripStudentViewModel extends AndroidViewModel {
         mRepository = new TripStudentRepository(application);
     }
 
+    public LiveData<List<TripStudent>> getAllTripStudents(){return mRepository.getAllTripStudent();}
     public LiveData<List<Integer>> getStudentsIdsByTripId(int trip_id){return mRepository.getStudentsIdsByTripId(trip_id);}
     public LiveData<List<Integer>> getTripsIdsByStudentId(int student_id){return mRepository.getTripsIdsByStudentId(student_id);}
     public void insert(TripStudent tripStudent){mRepository.insert(tripStudent);}

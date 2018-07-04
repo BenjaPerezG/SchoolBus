@@ -3,9 +3,11 @@
     package="com.example.rabinovich.schoolbus">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".MainApplication"
@@ -15,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +27,8 @@
         </activity>
         <activity
             android:name=".Activities.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

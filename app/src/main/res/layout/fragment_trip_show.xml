@@ -1,107 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.TripShowFragment">
+    tools:context=".Fragments.TripCreateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/trip_id_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/id" />
-
-    <TextView
-        android:id="@+id/driver_trip_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/trip_id_view"
-        android:layout_marginTop="99dp"
-        android:text="@string/conductor" />
-
-    <TextView
-        android:id="@+id/date_trip_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/trip_id_view"
-        android:layout_marginTop="144dp"
-        android:text="@string/fecha" />
-
-    <TextView
-        android:id="@+id/bus_plate_trip_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/trip_id_view"
-        android:layout_marginTop="204dp"
-        android:text="@string/patente_del_bus" />
-
-    <ListView
-        android:id="@+id/student_list_show"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="151dp" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/trip_id_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/trip_id_view"
-        android:layout_centerHorizontal="true"
-        android:text="@string/textview" />
+        <TextView
+            android:id="@+id/trip_id_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/id" />
 
-    <Spinner
-        android:id="@+id/driver_list_edit"
-        android:layout_width="243dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/driver_trip_show"
-        android:layout_marginStart="141dp" />
+        <TextView
+            android:id="@+id/trip_id_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Spinner
-        android:id="@+id/bus_list_edit"
-        android:layout_width="241dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/bus_plate_trip_show"
-        android:layout_marginStart="143dp" />
+        <TextView
+            android:id="@+id/driver_trip_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/conductor" />
 
-    <EditText
-        android:id="@+id/dete_trip_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/driver_list_edit"
-        android:layout_marginTop="136dp"
-        android:ems="10"
-        android:inputType="date" />
+        <Spinner
+            android:id="@+id/driver_list_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/Edit_trip"
-        android:layout_width="296dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="89dp"
-        android:layout_toEndOf="@+id/trip_id_view"
-        android:text="@string/editar" />
+        <TextView
+            android:id="@+id/bus_plate_trip_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/patente_del_bus" />
 
-    <Button
-        android:id="@+id/Delete_trip"
-        android:layout_width="297dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
-        android:layout_toEndOf="@+id/trip_id_view"
-        android:text="@string/borrar" />
+        <Spinner
+            android:id="@+id/bus_list_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/date_trip_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha" />
+
+        <CalendarView
+            android:id="@+id/date_trip_edit"
+            android:layout_width="match_parent"
+            android:layout_height="296dp"
+
+            android:ems="10" />
+
+        <Button
+            android:id="@+id/buttonCall"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Llamar conductor"/>
+        <Button
+            android:id="@+id/add_students_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar Alumnos" />
+
+        <Button
+            android:id="@+id/Edit_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editar" />
+
+        <Button
+            android:id="@+id/Delete_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/borrar" />
+    </LinearLayout>
+</FrameLayout>
