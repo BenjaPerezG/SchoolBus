@@ -179,7 +179,7 @@ private FragmentActivity activity;
                 });
 
                 SharedPreferences sp = activity.getSharedPreferences(getString(R.string.shared_preferences_file), activity.MODE_PRIVATE);
-                boolean isAdmin = sp.getBoolean("userIsAdmin", false);
+               /* boolean isAdmin = sp.getBoolean("userIsAdmin", false);
                 if(!isAdmin){
                     driverSpinner.setEnabled(false);
                     busSpinner.setEnabled(false);
@@ -187,7 +187,7 @@ private FragmentActivity activity;
                     callButton.setVisibility(View.GONE);
                     mEditButton.setVisibility(View.GONE);
                     mDeleteButton.setVisibility(View.GONE);
-                }
+                }*/
             }
         });
 
