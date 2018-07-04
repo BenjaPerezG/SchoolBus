@@ -19,6 +19,9 @@ import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -76,7 +79,7 @@ public class AdminCreateUserFragment extends Fragment {
 
         if (firstNameEditText.getText().toString().equals("") || lastNameEditText.getText().toString().equals("") || emailEditText.getText().toString().equals("") || phoneText.getText().toString().equals("") || passwordEditText. getText().toString().equals("")){
             Toast.makeText(getContext(), "Campos sin llenar, por favor no deje campos vacios", Toast.LENGTH_LONG).show();
-        }else {
+        }else if(isEmailValid(emailEditText.getText().toString())){
             User user = new User();
             user.setFirst_name(firstNameEditText.getText().toString());
             user.setLast_name(lastNameEditText.getText().toString());
@@ -92,6 +95,16 @@ public class AdminCreateUserFragment extends Fragment {
             }
             userViewModel.insert(user);
             getActivity().getSupportFragmentManager().popBackStack();
+        }else{
+            Toast.makeText(getContext(), "Email invalido, por favor intente nuevamente", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
