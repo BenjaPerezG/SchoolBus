@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rabinovich.schoolbus.Database.Daos.UserDao;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
@@ -39,6 +41,8 @@ public class ShowUserFragment extends Fragment {
     EditText email_show;
     EditText type_show;
     EditText phone_show;
+
+    SharedPreferences loginPreferences;
 
     User mUser;
 
@@ -66,6 +70,7 @@ public class ShowUserFragment extends Fragment {
         type_show = (EditText) getView().findViewById(R.id.edit_type);
         phone_show = (EditText) getView().findViewById(R.id.edit_phone);
 
+        loginPreferences = this.getActivity().getSharedPreferences("LoginPrefs", getContext().MODE_PRIVATE);
         show_id = getArguments().getString("Id");
         current_id = Integer.parseInt(show_id);
         userViewModel.getUserById(current_id).observe(this, new Observer<User>() {
@@ -125,21 +130,24 @@ public class ShowUserFragment extends Fragment {
     }
 
     public void Delete(User user){
-        userViewModel.delete(user);
-        getActivity().getSupportFragmentManager().popBackStack();
-
+        if(mUser.getId() == loginPreferences.getInt("userId", -1)){
+            Toast.makeText(getContext(), "No puedes borrarte a ti mismo aqui, anda a otro lado.", Toast.LENGTH_LONG).show();
+        }else {
+            userViewModel.delete(user);
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
 
     }
 
     public void CallUser(){
         int phone = mUser.getPhone_number();
-        if(phone != -1){
+        if (phone != -1) {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:"+Integer.toString(phone)));
+            callIntent.setData(Uri.parse("tel:" + Integer.toString(phone)));
 
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
-                    PackageManager.PERMISSION_GRANTED){
-                if(!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CALL_PHONE)){
+                    PackageManager.PERMISSION_GRANTED) {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CALL_PHONE)) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 1);
                 }
             }
