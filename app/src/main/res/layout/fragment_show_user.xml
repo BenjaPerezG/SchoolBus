@@ -48,10 +48,18 @@
         android:id="@+id/user_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/user_Id"
+        android:layout_centerVertical="true"
+        android:text="Telefono" />
+
+    <TextView
+        android:id="@+id/user_type2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/user_Id"
         android:layout_marginTop="213dp"
-        android:text="@string/roll" />
+        android:text="Rol" />
 
     <Button
         android:id="@+id/user_edit"
@@ -118,5 +126,24 @@
         android:layout_marginTop="204dp"
         android:ems="10"
         android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/edit_name"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/buttonCall"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="53dp"
+        android:text="Button" />
 
 </RelativeLayout>

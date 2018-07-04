@@ -1,12 +1,17 @@
 package com.example.rabinovich.schoolbus.Fragments;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +38,9 @@ public class ShowUserFragment extends Fragment {
     EditText last_show;
     EditText email_show;
     EditText type_show;
+    EditText phone_show;
+
+    User mUser;
 
     public ShowUserFragment(UserViewModel userViewModel) {
         this.userViewModel = userViewModel;
@@ -56,17 +64,21 @@ public class ShowUserFragment extends Fragment {
         last_show = (EditText) getView().findViewById(R.id.last_name_edit);
         email_show = (EditText) getView().findViewById(R.id.edit_email);
         type_show = (EditText) getView().findViewById(R.id.edit_type);
+        phone_show = (EditText) getView().findViewById(R.id.edit_phone);
 
         show_id = getArguments().getString("Id");
         current_id = Integer.parseInt(show_id);
         userViewModel.getUserById(current_id).observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
+
+                mUser = user;
                 id_show.setText(show_id);
                 name_show.setText(user.getFirst_name());
                 last_show.setText(user.getLast_name());
                 email_show.setText(user.getEmail());
                 type_show.setText(user.getUser_type());
+                phone_show.setText(Integer.toString(user.getPhone_number()));
 
 
                 final User current_user=user;
@@ -83,6 +95,15 @@ public class ShowUserFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Delete(current_user);
+                    }
+                });
+
+                Button callButton = (Button) getView().findViewById(R.id.buttonCall);
+                callButton.setText("Llamar "+Integer.toString(user.getPhone_number()));
+                callButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view1){
+                        CallUser();
                     }
                 });
             }
@@ -108,6 +129,26 @@ public class ShowUserFragment extends Fragment {
         getActivity().getSupportFragmentManager().popBackStack();
 
 
+    }
+
+    public void CallUser(){
+        int phone = mUser.getPhone_number();
+        if(phone != -1){
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:"+Integer.toString(phone)));
+
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
+                    PackageManager.PERMISSION_GRANTED){
+                if(!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CALL_PHONE)){
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 1);
+                }
+            }
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                startActivity(callIntent);
+            }
+            startActivity(callIntent);
+        }
     }
 
 }

@@ -238,14 +238,17 @@ private TripStudentViewModel tripStudentViewModel;
         }
         if(phone != -1){
             Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:999651846"));
+            callIntent.setData(Uri.parse("tel:"+Integer.toString(phone)));
 
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
             PackageManager.PERMISSION_GRANTED){
                 if(!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CALL_PHONE)){
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 1);
                 }
-                return;
+            }
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                startActivity(callIntent);
             }
             startActivity(callIntent);
         }

@@ -32,6 +32,7 @@ public class AdminCreateUserFragment extends Fragment {
     private AutoCompleteTextView emailEditText;
     private EditText passwordEditText;
     private EditText confirmPasswordEditText;
+    private EditText phoneText;
     private Spinner rollSpinner;
     @SuppressLint("ValidFragment")
     public AdminCreateUserFragment(UserViewModel userViewModel) {
@@ -60,6 +61,7 @@ public class AdminCreateUserFragment extends Fragment {
         passwordEditText = (EditText) getView().findViewById(R.id.password);
         confirmPasswordEditText = (EditText) getView().findViewById(R.id.confirm_password);
         rollSpinner = (Spinner) getView().findViewById(R.id.spinner);
+        phoneText = (EditText) getView().findViewById(R.id.phone);
         Button mRegisterButton = (Button) getView().findViewById(R.id.register_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +77,7 @@ public class AdminCreateUserFragment extends Fragment {
         user.setFirst_name(firstNameEditText.getText().toString());
         user.setLast_name(lastNameEditText.getText().toString());
         user.setEmail(emailEditText.getText().toString());
+        user.setPhone_number(Integer.parseInt(phoneText.getText().toString()));
         user.setPassword(passwordEditText.getText().toString());
         if (rollSpinner.getSelectedItem().toString().equals("Administrador")){
             user.setUser_type(getString(R.string.user_type_admin));
