@@ -30,6 +30,7 @@ import com.example.rabinovich.schoolbus.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -72,11 +73,13 @@ public class TripCreateFragment extends Fragment {
         driverSpinner = (Spinner) getView().findViewById(R.id.driver_spinner);
         busSpinner = (Spinner) getView().findViewById(R.id.bus_spinner);
         datePicker = (CalendarView) getView().findViewById(R.id.trip_date_picker);
-        date = "01-01-1900";
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        date = df.format(c);
         datePicker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
+                date= String.valueOf(dayOfMonth) + "-" + String.valueOf(month+1) + "-" + String.valueOf(year);
             }
         });
 

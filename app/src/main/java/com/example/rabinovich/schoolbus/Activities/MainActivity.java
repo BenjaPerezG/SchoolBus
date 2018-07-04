@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
+
                         if(id==R.id.nav_buses){
                             BusFragment busFragment = new BusFragment(busViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -241,17 +242,15 @@ public class MainActivity extends AppCompatActivity {
                             transaction.addToBackStack(null);
 
                             transaction.commit();
-                            return true;
                         }
                         if(id==R.id.nav_my_students){
-                            GuardianStudentFragment guardianStudentFragment = new GuardianStudentFragment(studentViewModel, userViewModel, stopViewModel);
+                            GuardianStudentFragment guardianStudentFragment = new GuardianStudentFragment(studentViewModel, userViewModel, stopViewModel, tripViewModel, tripStudentViewModel);
                             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                             transaction.replace(R.id.container, guardianStudentFragment);
                             transaction.addToBackStack(null);
 
                             transaction.commit();
-                            return true;
                         }
                         if(id==R.id.nav_users){
                             AdminUsersFragment adminMainFragment = new AdminUsersFragment(userViewModel);
