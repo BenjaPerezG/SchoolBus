@@ -10,10 +10,6 @@
             android:icon="@drawable/ic_bus_icon"
             android:title="Buses" />
         <item
-            android:id="@+id/nav_drivers"
-            android:icon="@drawable/ic_driver_icon"
-            android:title="Conductores" />
-        <item
             android:id="@+id/nav_trips"
             android:icon="@drawable/ic_trip_icon"
             android:title="@string/nav_trip" />
