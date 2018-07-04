@@ -21,6 +21,7 @@ import com.example.rabinovich.schoolbus.Adapters.StudentAdapter;
 import com.example.rabinovich.schoolbus.Database.StopViewModel;
 import com.example.rabinovich.schoolbus.Database.Student;
 import com.example.rabinovich.schoolbus.Database.StudentViewModel;
+import com.example.rabinovich.schoolbus.Database.User;
 import com.example.rabinovich.schoolbus.Database.UserViewModel;
 import com.example.rabinovich.schoolbus.R;
 
@@ -79,6 +80,7 @@ public class AdminStudentFragment extends Fragment {
         studentViewModel.getAllStudents().observe(getActivity(), new Observer<List<Student>>() {
             @Override
             public void onChanged(@Nullable List<Student> students) {
+                final List<Student> studentList = students;
                 listView = view.findViewById(R.id.student_list_view);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -99,8 +101,19 @@ public class AdminStudentFragment extends Fragment {
 
                     }
                 });
-                StudentAdapter adapter = new StudentAdapter(students, getContext(), userViewModel);
-                listView.setAdapter(adapter);
+                userViewModel.getUsersByUserType("guardian").observe(getActivity(), new Observer<List<User>>() {
+                    @Override
+                    public void onChanged(@Nullable List<User> users) {
+                       final List<User> userList = users;
+
+                        StudentAdapter adapter = new StudentAdapter(studentList, getContext(), userViewModel, userList);
+                        listView.setAdapter(adapter);
+
+                    }
+
+                });
+
+
             }
         });
     }
