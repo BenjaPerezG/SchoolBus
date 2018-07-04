@@ -3,6 +3,7 @@ package com.example.rabinovich.schoolbus.Fragments;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,6 +43,8 @@ public class TripFragment extends Fragment {
     StudentViewModel studentViewModel;
     List<User> users;
     List<Bus> buses;
+    SharedPreferences loginPreferences;
+    User current_user;
 
     private ListView listView;
 
@@ -59,6 +62,17 @@ public class TripFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        loginPreferences = getContext().getSharedPreferences(getString(R.string.shared_preferences_file), getContext().MODE_PRIVATE);
+        int id = loginPreferences.getInt("userId", -1);
+        userViewModel.getUserById(id).observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                current_user = user;
+                if(!user.getUser_type().equals(getString(R.string.user_type_admin))){
+                    getView().findViewById(R.id.add_trip_button).setVisibility(View.GONE);
+                }
+            }
+        });
         userViewModel.getUsersByUserType("driver").observe(getActivity(), new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> ousers) {
